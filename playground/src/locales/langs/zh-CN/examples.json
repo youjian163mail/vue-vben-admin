@@ -1,5 +1,5 @@
 {
-  "title": "示例",
+  "title": "极效OS",
   "modal": {
     "title": "弹窗"
   },
@@ -29,6 +29,7 @@
     "upload-image": "点击上传图片"
   },
   "vxeTable": {
+    "projectmanagement": "项目管理",
     "title": "Vxe 表格",
     "basic": "基础表格",
     "remote": "远程加载",
