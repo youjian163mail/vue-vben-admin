@@ -1,22 +1,22 @@
 <script lang="ts" setup>
 import type { DataNode } from 'ant-design-vue/es/tree';
 
-import type { SystemRoleApi } from '#/api/system/role';
+import type { ProjectApi } from '#/api/dows-project/project';
 
 import { computed, nextTick, ref } from 'vue';
 
 import { useVbenDrawer } from '@vben/common-ui';
 
 import { useVbenForm } from '#/adapter/form';
+import { createProject, updateProject } from '#/api/dows-project/project';
 import { getMenuList } from '#/api/system/menu';
-import { createRole, updateRole } from '#/api/system/role';
 import { $t } from '#/locales';
 
 import { useFormSchema } from '../data';
 
 const emits = defineEmits(['success']);
 
-const formData = ref<SystemRoleApi.SystemRole>();
+const formData = ref<ProjectApi.Project>();
 
 const [Form, formApi] = useVbenForm({
   schema: useFormSchema(),
@@ -33,7 +33,7 @@ const [Drawer, drawerApi] = useVbenDrawer({
     if (!valid) return;
     const values = await formApi.getValues();
     drawerApi.lock();
-    (id.value ? updateRole(id.value, values) : createRole(values))
+    (id.value ? updateProject(id.value, values) : createProject(values))
       .then(() => {
         emits('success');
         drawerApi.close();
@@ -45,7 +45,7 @@ const [Drawer, drawerApi] = useVbenDrawer({
 
   async onOpenChange(isOpen) {
     if (isOpen) {
-      const data = drawerApi.getData<SystemRoleApi.SystemRole>();
+      const data = drawerApi.getData<ProjectApi.Project>();
       formApi.resetForm();
 
       if (data) {
@@ -79,8 +79,8 @@ async function loadPermissions() {
 
 const getDrawerTitle = computed(() => {
   return formData.value?.id
-    ? $t('common.edit', $t('system.role.name'))
-    : $t('common.create', $t('system.role.name'));
+    ? $t('common.edit', $t('dows-project.project.name'))
+    : $t('common.create', $t('dows-project.project.name'));
 });
 </script>
 <template>

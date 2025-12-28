@@ -9,13 +9,13 @@ export function useFormSchema(): VbenFormSchema[] {
     {
       component: 'Input',
       fieldName: 'projectName',
-      label: $t('dows-project.project-management.projectName'),
+      label: $t('dows-project.project.projectName'),
       rules: 'required',
     },
     {
       component: 'Textarea',
       fieldName: 'description',
-      label: $t('dows-project.project-management.description'),
+      label: $t('dows-project.project.description'),
     },
   ];
 }
