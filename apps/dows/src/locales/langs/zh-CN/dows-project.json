@@ -3,7 +3,7 @@
   "project-management": {
     "title": "项目管理",
     "list": "项目列表",
-    "name": "角色",
+    "name": "项目",
     "roleName": "角色名称",
     "id": "角色ID",
     "status": "状态",
