@@ -15,19 +15,18 @@ export namespace ProjectApi {
  * 获取项目列表数据
  */
 async function getProjectList(params: Recordable<any>) {
-  return requestClient.get<Array<ProjectApi.Project>>(
-    '/admin/project/entity/list',
-    {
-      params,
-    },
-  );
+  return requestClient.get<Array<ProjectApi.Project>>('/admin/project/page', {
+    params,
+  });
 }
 
 /**
  * 创建项目
  * @param data 项目数据
  */
-async function createProject(data: ProjectApi.Project) {
+async function createProject(
+  data: Omit<ProjectApi.Project, 'projectInstanceId'>,
+) {
   return requestClient.post('/admin/project/entity', data);
 }
 
@@ -39,7 +38,7 @@ async function createProject(data: ProjectApi.Project) {
  */
 async function updateProject(
   projectInstanceId: string,
-  data: ProjectApi.Project,
+  data: Omit<ProjectApi.Project, 'projectInstanceId'>,
 ) {
   return requestClient.put(`/admin/project/entity/${projectInstanceId}`, data);
 }
