@@ -5,7 +5,7 @@
     "list": "项目列表",
     "name": "项目",
     "projectName": "项目名称",
-    "id": "角色ID",
+    "projectCode": "项目代码",
     "status": "状态",
     "description": "描述",
     "createTime": "创建时间",

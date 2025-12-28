@@ -24,31 +24,13 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       component: 'Input',
-      fieldName: 'name',
-      label: $t('system.role.roleName'),
-    },
-    { component: 'Input', fieldName: 'id', label: $t('system.role.id') },
-    {
-      component: 'Select',
-      componentProps: {
-        allowClear: true,
-        options: [
-          { label: $t('common.enabled'), value: 1 },
-          { label: $t('common.disabled'), value: 0 },
-        ],
-      },
-      fieldName: 'status',
-      label: $t('system.role.status'),
+      fieldName: 'projectName',
+      label: $t('dows-project.project.projectName'),
     },
     {
       component: 'Input',
-      fieldName: 'remark',
-      label: $t('system.role.remark'),
-    },
-    {
-      component: 'RangePicker',
-      fieldName: 'createTime',
-      label: $t('system.role.createTime'),
+      fieldName: 'projectCode',
+      label: $t('dows-project.project.projectCode'),
     },
   ];
 }
