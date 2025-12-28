@@ -8,14 +8,14 @@ export function useFormSchema(): VbenFormSchema[] {
   return [
     {
       component: 'Input',
-      fieldName: 'name',
+      fieldName: 'projectName',
       label: $t('dows-project.project-management.projectName'),
       rules: 'required',
     },
     {
       component: 'Textarea',
-      fieldName: 'remark',
-      label: $t('system.role.remark'),
+      fieldName: 'description',
+      label: $t('dows-project.project-management.description'),
     },
   ];
 }
