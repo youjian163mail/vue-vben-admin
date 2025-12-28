@@ -14,40 +14,42 @@ export namespace ProjectApi {
 /**
  * 获取项目列表数据
  */
-async function getRoleList(params: Recordable<any>) {
-  return requestClient.get<Array<SystemRoleApi.SystemRole>>(
+async function getProjectList(params: Recordable<any>) {
+  return requestClient.get<Array<ProjectApi.Project>>(
     '/admin/project/entity/list',
-    { params },
+    {
+      params,
+    },
   );
 }
 
 /**
- * 创建角色
- * @param data 角色数据
+ * 创建项目
+ * @param data 项目数据
  */
-async function createRole(data: Omit<SystemRoleApi.SystemRole, 'id'>) {
+async function createProject(data: ProjectApi.Project) {
   return requestClient.post('/admin/project/entity', data);
 }
 
 /**
- * 更新角色
+ * 更新项目
  *
- * @param id 角色 ID
- * @param data 角色数据
+ * @param projectInstanceId 项目 ID
+ * @param data 项目数据
  */
-async function updateRole(
-  id: string,
-  data: Omit<SystemRoleApi.SystemRole, 'id'>,
+async function updateProject(
+  projectInstanceId: string,
+  data: ProjectApi.Project,
 ) {
-  return requestClient.put(`/admin/project/entity/${id}`, data);
+  return requestClient.put(`/admin/project/entity/${projectInstanceId}`, data);
 }
 
 /**
- * 删除角色
- * @param id 角色 ID
+ * 删除项目
+ * @param projectInstanceId 项目 ID
  */
-async function deleteRole(id: string) {
-  return requestClient.delete(`/admin/project/entity/${id}`);
+async function deleteProject(projectInstanceId: string) {
+  return requestClient.delete(`/admin/project/entity/${projectInstanceId}`);
 }
 
-export { createRole, deleteRole, getRoleList, updateRole };
+export { createProject, deleteProject, getProjectList, updateProject };
