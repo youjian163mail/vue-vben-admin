@@ -9,18 +9,17 @@ const routes: RouteRecordRaw[] = [
       order: 100,
       title: $t('dows-project.title'),
     },
-    name: 'Project',
+    name: 'DowsProject',
     path: '/dows-project',
     children: [
       {
-        path: '/dows-project/project-management',
-        name: 'ProjectManagement',
+        path: '/dows-project/project',
+        name: 'Project',
         meta: {
           icon: 'mdi:account-group',
-          title: $t('dows-project.project-management.title'),
+          title: $t('dows-project.project.title'),
         },
-        component: () =>
-          import('#/views/dows/project/project-management/list.vue'),
+        component: () => import('#/views/dows-project/project/list.vue'),
       },
     ],
   },

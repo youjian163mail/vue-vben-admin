@@ -152,15 +152,11 @@ function onCreate() {
 <template>
   <Page auto-content-height>
     <FormDrawer @success="onRefresh" />
-    <Grid :table-title="$t('dows-project.project-management.list')">
+    <Grid :table-title="$t('dows-project.project.list')">
       <template #toolbar-tools>
         <Button type="primary" @click="onCreate">
           <Plus class="size-5" />
-          {{
-            $t('ui.actionTitle.create', [
-              $t('dows-project.project-management.name'),
-            ])
-          }}
+          {{ $t('ui.actionTitle.create', [$t('dows-project.project.name')]) }}
         </Button>
       </template>
     </Grid>
