@@ -1,0 +1,97 @@
+[33mcommit c2b127df438168feb0c02bfbbc719da317b270fe[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Author: youjian163mail <youjian163mail@163.com>
+Date:   Fri Dec 26 18:19:10 2025 +0800
+
+    feat(@vben/playground): 左边大菜单极效OS及下边项目管理菜单子菜单
+
+[1mdiff --git a/playground/src/locales/langs/zh-CN/examples.json b/playground/src/locales/langs/zh-CN/examples.json[m
+[1mindex aa0b00f9..7b19c2a2 100644[m
+[1m--- a/playground/src/locales/langs/zh-CN/examples.json[m
+[1m+++ b/playground/src/locales/langs/zh-CN/examples.json[m
+[36m@@ -1,5 +1,5 @@[m
+ {[m
+[31m-  "title": "示例",[m
+[32m+[m[32m  "title": "极效OS",[m
+   "modal": {[m
+     "title": "弹窗"[m
+   },[m
+[36m@@ -29,6 +29,7 @@[m
+     "upload-image": "点击上传图片"[m
+   },[m
+   "vxeTable": {[m
+[32m+[m[32m    "projectmanagement": "项目管理",[m
+     "title": "Vxe 表格",[m
+     "basic": "基础表格",[m
+     "remote": "远程加载",[m
+[1mdiff --git a/playground/src/router/routes/modules/examples.ts b/playground/src/router/routes/modules/examples.ts[m
+[1mindex 2ca6b80d..7545c413 100644[m
+[1m--- a/playground/src/router/routes/modules/examples.ts[m
+[1m+++ b/playground/src/router/routes/modules/examples.ts[m
+[36m@@ -13,6 +13,14 @@[m [mconst routes: RouteRecordRaw[] = [[m
+     name: 'Examples',[m
+     path: '/examples',[m
+     children: [[m
+[32m+[m[32m      {[m
+[32m+[m[32m        name: 'VxeTableFormExample',[m
+[32m+[m[32m        path: '/examples/vxe-table/form',[m
+[32m+[m[32m        component: () => import('#/views/examples/vxe-table/form.vue'),[m
+[32m+[m[32m        meta: {[m
+[32m+[m[32m          title: $t('examples.vxeTable.projectmanagement'),[m
+[32m+[m[32m        },[m
+[32m+[m[32m      },[m
+       {[m
+         name: 'FormExample',[m
+         path: '/examples/form',[m
+[36m@@ -96,135 +104,6 @@[m [mconst routes: RouteRecordRaw[] = [[m
+           },[m
+         ],[m
+       },[m
+[31m-      {[m
+[31m-        name: 'VxeTableExample',[m
+[31m-        path: '/examples/vxe-table',[m
+[31m-        meta: {[m
+[31m-          icon: 'lucide:table',[m
+[31m-          title: $t('examples.vxeTable.title'),[m
+[31m-        },[m
+[31m-        children: [[m
+[31m-          {[m
+[31m-            name: 'VxeTableBasicExample',[m
+[31m-            path: '/examples/vxe-table/basic',[m
+[31m-            component: () => import('#/views/examples/vxe-table/basic.vue'),[m
+[31m-            meta: {[m
+[31m-              title: $t('examples.vxeTable.basic'),[m
+[31m-            },[m
+[31m-          },[m
+[31m-          {[m
+[31m-            name: 'VxeTableRemoteExample',[m
+[31m-            path: '/examples/vxe-table/remote',[m
+[31m-            component: () => import('#/views/examples/vxe-table/remote.vue'),[m
+[31m-            meta: {[m
+[31m-              title: $t('examples.vxeTable.remote'),[m
+[31m-            },[m
+[31m-          },[m
+[31m-          {[m
+[31m-            name: 'VxeTableTreeExample',[m
+[31m-            path: '/examples/vxe-table/tree',[m
+[31m-            component: () => import('#/views/examples/vxe-table/tree.vue'),[m
+[31m-            meta: {[m
+[31m-              title: $t('examples.vxeTable.tree'),[m
+[31m-            },[m
+[31m-          },[m
+[31m-          {[m
+[31m-            name: 'VxeTableFixedExample',[m
+[31m-            path: '/examples/vxe-table/fixed',[m
+[31m-            component: () => import('#/views/examples/vxe-table/fixed.vue'),[m
+[31m-            meta: {[m
+[31m-              title: $t('examples.vxeTable.fixed'),[m
+[31m-            },[m
+[31m-          },[m
+[31m-          {[m
+[31m-            name: 'VxeTableCustomCellExample',[m
+[31m-            path: '/examples/vxe-table/custom-cell',[m
+[31m-            component: () =>[m
+[31m-              import('#/views/examples/vxe-table/custom-cell.vue'),[m
+[31m-            meta: {[m
+[31m-              title: $t('examples.vxeTable.custom-cell'),[m
+[31m-            },[m
+[31m-          },[m
