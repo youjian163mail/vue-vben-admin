@@ -11,6 +11,11 @@ export default defineConfig(async () => {
             changeOrigin: true,
             rewrite: (path) => path.replace(/^\/api/, ''),
           },
+          '/api/admin/project/page': {
+            target: 'http://localhost:18001',
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/api/, ''),
+          },
           '/api': {
             target: 'http://localhost:5320/api',
             changeOrigin: true,
