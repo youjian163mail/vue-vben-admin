@@ -11,17 +11,7 @@ const routes: RouteRecordRaw[] = [
     },
     name: 'DowsProject',
     path: '/dows-project',
-    children: [
-      {
-        path: '/dows-project/project',
-        name: 'Project',
-        meta: {
-          icon: 'mdi:account-group',
-          title: $t('dows-project.project.title'),
-        },
-        component: () => import('#/views/dows-project/project/list.vue'),
-      },
-    ],
+    component: () => import('#/views/dows-project/project/list.vue'),
   },
 ];
 

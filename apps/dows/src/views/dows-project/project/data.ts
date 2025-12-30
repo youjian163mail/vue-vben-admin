@@ -13,6 +13,12 @@ export function useFormSchema(): VbenFormSchema[] {
       rules: 'required',
     },
     {
+      component: 'Input',
+      fieldName: 'projectCode',
+      label: $t('dows-project.project.projectCode'),
+      rules: 'required',
+    },
+    {
       component: 'Textarea',
       fieldName: 'description',
       label: $t('dows-project.project.description'),
@@ -20,6 +26,7 @@ export function useFormSchema(): VbenFormSchema[] {
   ];
 }
 
+// grid 搜索表单
 export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
@@ -35,54 +42,29 @@ export function useGridFormSchema(): VbenFormSchema[] {
   ];
 }
 
+// grid 列
 export function useColumns<T = ProjectApi.Project>(
-  onActionClick: OnActionClickFn<T>,
-  onStatusChange?: (newStatus: any, row: T) => PromiseLike<boolean | undefined>,
+  _onActionClick: OnActionClickFn<T>,
+  _onStatusChange?: (
+    newStatus: any,
+    row: T,
+  ) => PromiseLike<boolean | undefined>,
 ): VxeTableGridOptions['columns'] {
   return [
     {
-      field: 'name',
-      title: $t('system.role.roleName'),
+      field: 'projectName', // Changed to project-specific field
+      title: $t('dows-project.project.projectName'), // Fixed translation key
+      width: 400,
+    },
+    {
+      field: 'projectCode',
+      title: $t('dows-project.project.projectCode'), // Fixed translation key
       width: 200,
     },
     {
-      field: 'id',
-      title: $t('system.role.id'),
-      width: 200,
-    },
-    {
-      cellRender: {
-        attrs: { beforeChange: onStatusChange },
-        name: onStatusChange ? 'CellSwitch' : 'CellTag',
-      },
-      field: 'status',
-      title: $t('system.role.status'),
-      width: 100,
-    },
-    {
-      field: 'remark',
-      minWidth: 100,
-      title: $t('system.role.remark'),
-    },
-    {
-      field: 'createTime',
-      title: $t('system.role.createTime'),
-      width: 200,
-    },
-    {
-      align: 'center',
-      cellRender: {
-        attrs: {
-          nameField: 'name',
-          nameTitle: $t('system.role.name'),
-          onClick: onActionClick,
-        },
-        name: 'CellOperation',
-      },
-      field: 'operation',
-      fixed: 'right',
-      title: $t('system.role.operation'),
-      width: 130,
+      field: 'description', // Changed to project-specific field
+      minWidth: 400,
+      title: $t('dows-project.project.description'), // Fixed translation key
     },
   ];
 }

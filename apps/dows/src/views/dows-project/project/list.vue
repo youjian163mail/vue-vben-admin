@@ -50,7 +50,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
       },
     },
     rowConfig: {
-      keyField: 'id',
+      keyField: 'projectInstanceId',
     },
 
     toolbarConfig: {

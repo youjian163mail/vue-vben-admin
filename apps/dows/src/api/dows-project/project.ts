@@ -14,10 +14,12 @@ export namespace ProjectApi {
 /**
  * 获取项目列表数据
  */
-async function getProjectList(params: Recordable<any>) {
-  return requestClient.get<Array<ProjectApi.Project>>('/admin/project/page', {
-    params,
-  });
+async function getProjectList(_params: Recordable<any> = {}) {
+  const result = await requestClient.get<ProjectApi.Project>(
+    '/admin/project/page',
+    { getProjectPageRequest: {} },
+  );
+  return Array.isArray(result) ? result : [result];
 }
 
 /**
@@ -27,7 +29,8 @@ async function getProjectList(params: Recordable<any>) {
 async function createProject(
   data: Omit<ProjectApi.Project, 'projectInstanceId'>,
 ) {
-  return requestClient.post('/admin/project/entity', data);
+  const reqData = [data];
+  return requestClient.post('/admin/project/entity', reqData);
 }
 
 /**
