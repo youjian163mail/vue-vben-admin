@@ -41,7 +41,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
       ajax: {
         query: async ({ page }, formValues) => {
           return await getProjectList({
-            page: page.currentPage,
+            pageNum: page.currentPage,
             pageSize: page.pageSize,
             ...formValues,
           });
