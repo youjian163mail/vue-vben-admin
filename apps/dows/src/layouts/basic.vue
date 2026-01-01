@@ -19,10 +19,9 @@ import { useAccessStore, useTabbarStore, useUserStore } from '@vben/stores';
 import { openWindow } from '@vben/utils';
 
 import { $t } from '#/locales';
+import { globalConfig } from '#/preferences';
 import { useAuthStore } from '#/store';
 import LoginForm from '#/views/_core/authentication/login.vue';
-
-import { globalConfig } from '../preferences';
 
 const { setMenuList } = useTabbarStore();
 setMenuList([
