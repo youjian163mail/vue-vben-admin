@@ -13,11 +13,7 @@ import { Plus } from '@vben/icons';
 import { Button, message, Modal } from 'ant-design-vue';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
-import {
-  deleteProject,
-  getProjectList,
-  updateProject,
-} from '#/api/dows-project/project';
+import { deleteProject, updateProject } from '#/api/dows-project/project';
 import { $t } from '#/locales';
 
 import { useColumns, useGridFormSchema } from './data';
@@ -30,7 +26,6 @@ const [FormDrawer, formDrawerApi] = useVbenDrawer({
 
 const [Grid, gridApi] = useVbenVxeGrid({
   formOptions: {
-    fieldMappingTime: [['createTime', ['startTime', 'endTime']]],
     schema: useGridFormSchema(),
     submitOnChange: true,
   },
@@ -40,12 +35,20 @@ const [Grid, gridApi] = useVbenVxeGrid({
     keepSource: true,
     proxyConfig: {
       ajax: {
-        query: async ({ page }, formValues) => {
-          return await getProjectList({
-            page: page.currentPage,
-            pageSize: page.pageSize,
-            ...formValues,
-          });
+        query: async (_param) => {
+          return {
+            items: [
+              {
+                projectInstanceId: 1,
+                projectName: 'Test Project',
+              },
+              {
+                projectInstanceId: 2,
+                projectName: 'Another Project',
+              },
+            ],
+            total: 2,
+          };
         },
       },
     },

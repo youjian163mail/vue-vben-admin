@@ -56,15 +56,5 @@ export function useColumns<T = ProjectApi.Project>(
       title: $t('dows-project.project.projectName'), // Fixed translation key
       width: 400,
     },
-    {
-      field: 'projectCode',
-      title: $t('dows-project.project.projectCode'), // Fixed translation key
-      width: 200,
-    },
-    {
-      field: 'description', // Changed to project-specific field
-      minWidth: 400,
-      title: $t('dows-project.project.description'), // Fixed translation key
-    },
   ];
 }

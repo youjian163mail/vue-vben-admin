@@ -27,6 +27,10 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   const client = new RequestClient({
     ...options,
     baseURL,
+    headers: {
+      'ngrok-skip-browser-warning': 'true',
+      ...options?.headers, // 保留用户传入的 headers
+    },
     transformResponse: (data: any, header: AxiosResponseHeaders) => {
       // storeAsString指示将BigInt存储为字符串，设为false则会存储为内置的BigInt类型
       if (
@@ -90,7 +94,7 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
     defaultResponseInterceptor({
       codeField: 'code',
       dataField: 'data',
-      successCode: 0,
+      successCode: (code: any) => code === '200' || code === 0, // Function that checks for both values
     }),
   );
 
