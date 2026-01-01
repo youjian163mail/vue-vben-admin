@@ -26,6 +26,8 @@ async function getProjectList(params: Recordable<any> = {}) {
     finalRes.items = finalRes.items.map((item) => ({
       ...item,
       projectMemberNum: 20, // 添加项目成员数量字段，固定值为20
+      progress: '已完成', // 项目进度，先固定值为100
+      mindUrl: 'https://example.com/mindmap', // 脑图链接，先固定值
     }));
   }
 

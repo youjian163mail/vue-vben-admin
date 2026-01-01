@@ -6,6 +6,10 @@
     "name": "项目",
     "projectName": "项目名称",
     "projectCode": "项目代码",
-    "projectMemberNum": "项目成员数"
+    "projectMemberNum": "项目成员数",
+    "progress": "项目进度",
+    "mindUrl": "脑图链接",
+    "startTime": "创建时间",
+    "endTime": "结束时间"
   }
 }

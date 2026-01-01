@@ -2,6 +2,8 @@ import type { VbenFormSchema } from '#/adapter/form';
 import type { OnActionClickFn, VxeTableGridOptions } from '#/adapter/vxe-table';
 import type { ProjectApi } from '#/api/dows-project/project';
 
+import dayjs from 'dayjs';
+
 import { $t } from '#/locales';
 
 export function useFormSchema(): VbenFormSchema[] {
@@ -61,6 +63,27 @@ export function useColumns<T = ProjectApi.Project>(
       field: 'projectMemberNum',
       title: $t('dows-project.project.projectMemberNum'),
       width: 100,
+    },
+    {
+      align: 'center',
+      field: 'progress',
+      title: $t('dows-project.project.progress'),
+      width: 100,
+    },
+    {
+      align: 'center',
+      field: 'mindUrl',
+      title: $t('dows-project.project.mindUrl'),
+      width: 600,
+    },
+    {
+      align: 'center',
+      field: 'startTime',
+      title: $t('dows-project.project.startTime'),
+      width: 600,
+      formatter: ({ cellValue }) => {
+        return cellValue ? dayjs(cellValue).format('YYYY/MM/DD') : '';
+      },
     },
   ];
 }
