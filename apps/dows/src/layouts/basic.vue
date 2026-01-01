@@ -22,6 +22,8 @@ import { $t } from '#/locales';
 import { useAuthStore } from '#/store';
 import LoginForm from '#/views/_core/authentication/login.vue';
 
+import { globalConfig } from '../preferences';
+
 const { setMenuList } = useTabbarStore();
 setMenuList([
   'close',
@@ -196,6 +198,10 @@ onBeforeMount(() => {
     @clear-preferences-and-logout="handleLogout"
     @click-logo="handleClickLogo"
   >
+    <template #logo-text>
+      {{ globalConfig.logo_right_system_name }}
+    </template>
+
     <template #user-dropdown>
       <UserDropdown
         :avatar

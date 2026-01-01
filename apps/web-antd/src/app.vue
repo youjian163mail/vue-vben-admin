@@ -19,6 +19,7 @@ const tokenTheme = computed(() => {
     : [theme.defaultAlgorithm];
 
   // antd 紧凑模式算法
+
   if (preferences.app.compact) {
     algorithm.push(theme.compactAlgorithm);
   }

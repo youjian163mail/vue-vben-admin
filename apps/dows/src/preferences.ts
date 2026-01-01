@@ -1,3 +1,5 @@
+import { reactive, ref } from 'vue';
+
 import { defineOverridesPreferences } from '@vben/preferences';
 
 /**
@@ -10,4 +12,10 @@ export const overridesPreferences = defineOverridesPreferences({
   app: {
     name: import.meta.env.VITE_APP_TITLE,
   },
+});
+
+// 创建响应式全局状态
+export const globalConfig = reactive({
+  // 后台系统页面左上角Logo右边系统名称
+  logo_right_system_name: ref('极效OS'),
 });
