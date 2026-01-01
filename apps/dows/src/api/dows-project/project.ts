@@ -18,7 +18,12 @@ async function getProjectList(params: Recordable<any> = {}) {
   const response = await requestClient.get<any>('/admin/project/page', {
     params,
   });
-  return response;
+  // 因为VXTable对数据格式有要求，这里做一次转换items,total
+  const finalResponse = {
+    items: response.records,
+    total: response.totalRow,
+  };
+  return finalResponse;
 }
 
 /**
