@@ -14,14 +14,10 @@ export namespace ProjectApi {
 /**
  * 获取项目列表数据
  */
-async function getProjectList(_params: Recordable<any> = {}) {
+async function getProjectList(params: Recordable<any> = {}) {
   const response = await requestClient.get<any>('/admin/project/page', {
-    params: _params,
+    params,
   });
-
-  // 直接返回整个响应，让调用方处理格式
-  response.items = response.records;
-  response.total = response.totalRow;
   return response;
 }
 
