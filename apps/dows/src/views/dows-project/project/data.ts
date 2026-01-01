@@ -52,9 +52,15 @@ export function useColumns<T = ProjectApi.Project>(
 ): VxeTableGridOptions['columns'] {
   return [
     {
-      field: 'projectName', // Changed to project-specific field
-      title: $t('dows-project.project.projectName'), // Fixed translation key
+      field: 'projectName',
+      title: $t('dows-project.project.projectName'),
       width: 400,
+    },
+    {
+      align: 'center',
+      field: 'projectMemberNum',
+      title: $t('dows-project.project.projectMemberNum'),
+      width: 100,
     },
   ];
 }

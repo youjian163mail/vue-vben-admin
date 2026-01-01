@@ -6,11 +6,6 @@
     "name": "项目",
     "projectName": "项目名称",
     "projectCode": "项目代码",
-    "status": "状态",
-    "description": "描述",
-    "createTime": "创建时间",
-    "operation": "操作",
-    "permissions": "权限",
-    "setPermissions": "授权"
+    "projectMemberNum": "项目成员数"
   }
 }

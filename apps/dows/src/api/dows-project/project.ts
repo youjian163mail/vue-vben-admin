@@ -19,7 +19,17 @@ async function getProjectList(params: Recordable<any> = {}) {
   const response = await requestClient.get<any>('/admin/project/page', {
     params,
   });
-  return transformTableResponse(response);
+
+  const finalRes = transformTableResponse(response);
+
+  if (finalRes.items) {
+    finalRes.items = finalRes.items.map((item) => ({
+      ...item,
+      projectMemberNum: 20, // 添加项目成员数量字段，固定值为20
+    }));
+  }
+
+  return finalRes;
 }
 
 /**
