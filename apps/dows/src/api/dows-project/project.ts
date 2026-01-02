@@ -10,6 +10,11 @@ export namespace ProjectApi {
     projectName: string;
     description?: string;
   }
+
+  // Add the delete item interface
+  export interface DeleteProjectItem {
+    projectInstanceId: string;
+  }
 }
 
 /**
@@ -60,11 +65,19 @@ async function updateProject(
 }
 
 /**
- * 删除项目
+ * 单个删除项目
  * @param projectInstanceId 项目 ID
  */
 async function deleteProject(projectInstanceId: string) {
-  return requestClient.delete(`/admin/project/entity/${projectInstanceId}`);
+  return batchDeleteProject([{ projectInstanceId }]);
+}
+
+/**
+ * 批量删除项目传入多个id对象的数组，页面传来的是单个，要转成id对象的数组，接口实际接收如 [{keyId1:keyId1Value}, {keyId2:keyId2Value}...]
+ * @param ProjectApi.DeleteProjectItem[]
+ */
+async function batchDeleteProject(reqData: ProjectApi.DeleteProjectItem[]) {
+  return requestClient.delete(`/admin/project/entity`, { data: reqData });
 }
 
 export { createProject, deleteProject, getProjectList, updateProject };
