@@ -52,7 +52,7 @@ export function useColumns<T = ProjectApi.Project>(
     {
       field: 'projectName',
       title: $t('dows-project.project.projectName'),
-      width: 400,
+      width: 300,
     },
     {
       align: 'center',
@@ -70,7 +70,7 @@ export function useColumns<T = ProjectApi.Project>(
       align: 'center',
       field: 'mindUrl',
       title: $t('dows-project.project.mindUrl'),
-      width: 600,
+      width: 400,
     },
     {
       align: 'center',
@@ -85,7 +85,7 @@ export function useColumns<T = ProjectApi.Project>(
       align: 'center',
       cellRender: {
         attrs: {
-          nameField: 'name',
+          nameField: 'projectName',
           nameTitle: $t('dows-project.project.name'),
           onClick: onActionClick,
         },
