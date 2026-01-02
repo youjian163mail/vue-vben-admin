@@ -6,6 +6,17 @@ import dayjs from 'dayjs';
 
 import { $t } from '#/locales';
 
+const SCOPE_OPTIONS = [
+  {
+    label: '成员可见',
+    value: '0',
+  },
+  {
+    label: '组织可见',
+    value: '1',
+  },
+];
+
 export function useFormSchema(): VbenFormSchema[] {
   return [
     {
@@ -21,11 +32,25 @@ export function useFormSchema(): VbenFormSchema[] {
       rules: 'required',
     },
     {
+      component: 'Select',
+      componentProps: {
+        allowClear: true,
+        filterOption: true,
+        options: SCOPE_OPTIONS,
+        placeholder: '请选择',
+        showSearch: false,
+        style: { width: '200px' }, // 增加下拉框宽度
+      },
+      fieldName: 'scope',
+      label: $t('dows-project.project.scope'),
+    },
+    {
       component: 'DatePicker',
       fieldName: 'startTime',
       label: $t('dows-project.project.startTime'),
       componentProps: {
         valueFormat: 'YYYY-MM-DDT00:00:00', // 设置日期格式
+        style: { width: '200px' }, // 设置日期选择器宽度与下拉框一致
       },
     },
     {
@@ -34,12 +59,16 @@ export function useFormSchema(): VbenFormSchema[] {
       label: $t('dows-project.project.endTime'),
       componentProps: {
         valueFormat: 'YYYY-MM-DDT23:59:59', // 设置日期格式
+        style: { width: '200px' }, // 设置日期选择器宽度与下拉框一致
       },
     },
     {
       component: 'Textarea',
       fieldName: 'description',
       label: $t('dows-project.project.description'),
+      componentProps: {
+        rows: 8, // 设置文本域高度为8行
+      },
     },
   ];
 }

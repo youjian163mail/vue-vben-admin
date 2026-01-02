@@ -151,7 +151,7 @@ function onCreate() {
 </script>
 <template>
   <Page auto-content-height>
-    <FormDrawer @success="onRefresh" />
+    <FormDrawer class="w-[600px]" @success="onRefresh" />
     <Grid :table-title="$t('dows-project.project.list')">
       <template #toolbar-tools>
         <Button type="primary" @click="onCreate">
