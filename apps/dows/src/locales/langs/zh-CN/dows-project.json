@@ -4,6 +4,7 @@
     "title": "项目管理",
     "list": "项目列表",
     "name": "项目",
+    "operation": "操作",
     "projectName": "项目名称",
     "projectCode": "项目代码",
     "projectMemberNum": "项目成员数",

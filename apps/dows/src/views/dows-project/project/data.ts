@@ -46,11 +46,7 @@ export function useGridFormSchema(): VbenFormSchema[] {
 
 // grid 列
 export function useColumns<T = ProjectApi.Project>(
-  _onActionClick: OnActionClickFn<T>,
-  _onStatusChange?: (
-    newStatus: any,
-    row: T,
-  ) => PromiseLike<boolean | undefined>,
+  onActionClick: OnActionClickFn<T>,
 ): VxeTableGridOptions['columns'] {
   return [
     {
@@ -84,6 +80,21 @@ export function useColumns<T = ProjectApi.Project>(
       formatter: ({ cellValue }) => {
         return cellValue ? dayjs(cellValue).format('YYYY/MM/DD') : '';
       },
+    },
+    {
+      align: 'center',
+      cellRender: {
+        attrs: {
+          nameField: 'name',
+          nameTitle: $t('dows-project.project.name'),
+          onClick: onActionClick,
+        },
+        name: 'CellOperation',
+      },
+      field: 'operation',
+      fixed: 'right',
+      title: $t('dows-project.project.operation'),
+      width: 130,
     },
   ];
 }
