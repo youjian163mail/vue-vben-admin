@@ -21,6 +21,22 @@ export function useFormSchema(): VbenFormSchema[] {
       rules: 'required',
     },
     {
+      component: 'DatePicker',
+      fieldName: 'startTime',
+      label: $t('dows-project.project.startTime'),
+      componentProps: {
+        valueFormat: 'YYYY-MM-DDT00:00:00', // 设置日期格式
+      },
+    },
+    {
+      component: 'DatePicker',
+      fieldName: 'endTime',
+      label: $t('dows-project.project.endTime'),
+      componentProps: {
+        valueFormat: 'YYYY-MM-DDT23:59:59', // 设置日期格式
+      },
+    },
+    {
       component: 'Textarea',
       fieldName: 'description',
       label: $t('dows-project.project.description'),

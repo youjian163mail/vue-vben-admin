@@ -5,12 +5,13 @@
     "list": "项目列表",
     "name": "项目",
     "operation": "操作",
-    "projectName": "项目名称",
-    "projectCode": "项目代码",
+    "projectName": "项目名",
+    "projectCode": "项目Code",
     "projectMemberNum": "项目成员数",
     "progress": "项目进度",
     "mindUrl": "脑图链接",
-    "startTime": "创建时间",
-    "endTime": "结束时间"
+    "description": "状态项目描述",
+    "startTime": "开始日期",
+    "endTime": "结束日期"
   }
 }
