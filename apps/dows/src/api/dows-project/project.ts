@@ -73,7 +73,7 @@ async function deleteProject(projectInstanceId: string) {
 }
 
 /**
- * 批量删除项目传入多个id对象的数组，页面传来的是单个，要转成id对象的数组，接口实际接收如 [{keyId1:keyId1Value}, {keyId2:keyId2Value}...]
+ * 批量删除项目 传入多个id对象的数组，页面传来的是单个，要转成id对象的数组，接口实际接收如 [{keyId1:keyId1Value}, {keyId2:keyId2Value}...]
  * @param ProjectApi.DeleteProjectItem[]
  */
 async function batchDeleteProject(reqData: ProjectApi.DeleteProjectItem[]) {
