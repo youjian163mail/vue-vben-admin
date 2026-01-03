@@ -45,6 +45,11 @@ export function useFormSchema(): VbenFormSchema[] {
       label: $t('dows-project.project.scope'),
     },
     {
+      component: 'IconPicker',
+      fieldName: 'icon',
+      label: '图标',
+    },
+    {
       component: 'DatePicker',
       fieldName: 'startTime',
       label: $t('dows-project.project.startTime'),
@@ -99,7 +104,7 @@ export function useColumns<T = ProjectApi.Project>(
       field: 'projectName',
       title: $t('dows-project.project.projectName'),
       width: 530,
-      className: 'pl-4', // 添加左侧内边距
+      className: 'pl-4', // 内容单元格添加左侧内边距
     },
     {
       align: 'left',
