@@ -166,16 +166,18 @@ function onCreate() {
         </div>
       </template>
       <template #progress="{ row }">
-        <div class="flex items-center justify-center w-full">
-          <span 
-            v-if="Number(row.progress) === 100" 
-            class="w-2 h-2 rounded-full bg-green-500 mr-2"
+        <div class="flex w-full items-center justify-center">
+          <span
+            v-if="Number(row.progress) === 100"
+            class="mr-2 h-2 w-2 rounded-full bg-green-500"
           ></span>
           <span>
-            {{ 
-              Number(row.progress) === 100 
-                ? '已完成' 
-                : (row.progress != null ? `${Number(row.progress)}% 进行中` : '0% 进行中') 
+            {{
+              Number(row.progress) === 100
+                ? '已完成'
+                : row.progress != null
+                  ? `${Number(row.progress)}% 进行中`
+                  : '0% 进行中'
             }}
           </span>
         </div>
