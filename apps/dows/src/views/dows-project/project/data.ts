@@ -98,7 +98,7 @@ export function useColumns<T = ProjectApi.Project>(
       align: 'left',
       field: 'projectName',
       title: $t('dows-project.project.projectName'),
-      width: 300,
+      width: 530,
       className: 'pl-4', // 添加左侧内边距
     },
     {
