@@ -50,6 +50,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
     },
     rowConfig: {
       keyField: 'id',
+      height: 80, // 设置行高度为80px
     },
 
     toolbarConfig: {
@@ -158,6 +159,29 @@ function onCreate() {
           <Plus class="size-5" />
           {{ $t('ui.actionTitle.create', [$t('dows-project.project.name')]) }}
         </Button>
+      </template>
+      <template #header-progress>
+        <div class="flex items-center justify-center">
+          <span class="font-bold text-blue-600">📊 进度</span>
+        </div>
+      </template>
+      <template #progress="{ row }">
+        <div class="flex w-full items-center justify-center">
+          <span
+            v-if="Number(row.progress) === 100"
+            class="mr-2 h-2 w-2 rounded-full bg-green-500"
+          ></span>
+          <span>
+            {{
+              Number(row.progress) === 100
+                ? '已完成'
+                : `${row.progress}% 进行中`
+            }}
+          </span>
+        </div>
+      </template>
+      <template #projectNameHeader>
+        <span class="pl-4">{{ $t('dows-project.project.projectName') }}</span>
       </template>
     </Grid>
   </Page>

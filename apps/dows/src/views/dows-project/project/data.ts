@@ -78,13 +78,13 @@ export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       component: 'Input',
-      fieldName: 'projectName',
+      fieldName: 'name',
       label: $t('dows-project.project.projectName'),
     },
     {
-      component: 'Input',
-      fieldName: 'projectCode',
-      label: $t('dows-project.project.projectCode'),
+      component: 'DatePicker',
+      fieldName: 'startTime',
+      label: $t('dows-project.project.startTime'),
     },
   ];
 }
@@ -95,12 +95,14 @@ export function useColumns<T = ProjectApi.Project>(
 ): VxeTableGridOptions['columns'] {
   return [
     {
+      align: 'left',
       field: 'projectName',
       title: $t('dows-project.project.projectName'),
       width: 300,
+      className: 'pl-4', // 添加左侧内边距
     },
     {
-      align: 'center',
+      align: 'left',
       field: 'projectMemberNum',
       title: $t('dows-project.project.projectMemberNum'),
       width: 100,
@@ -109,25 +111,26 @@ export function useColumns<T = ProjectApi.Project>(
       align: 'center',
       field: 'progress',
       title: $t('dows-project.project.progress'),
-      width: 100,
+      width: 150,
+      slots: { default: 'progress' },
     },
     {
-      align: 'center',
+      align: 'left',
       field: 'mindUrl',
       title: $t('dows-project.project.mindUrl'),
-      width: 400,
+      width: 600,
     },
     {
       align: 'center',
       field: 'startTime',
       title: $t('dows-project.project.startTime'),
-      width: 600,
+      width: 120,
       formatter: ({ cellValue }) => {
         return cellValue ? dayjs(cellValue).format('YYYY/MM/DD') : '';
       },
     },
     {
-      align: 'center',
+      align: 'left',
       cellRender: {
         attrs: {
           nameField: 'projectName',

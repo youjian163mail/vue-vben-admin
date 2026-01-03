@@ -9,6 +9,7 @@ export namespace ProjectApi {
     projectInstanceId: string;
     projectName: string;
     description?: string;
+    progress?: number;
   }
 
   // Add the delete item interface
@@ -32,7 +33,7 @@ async function getProjectList(params: Recordable<any> = {}) {
       ...item,
       id: item.id || item.projectInstanceId,
       projectMemberNum: 20, // 添加项目成员数量字段，固定值为20
-      progress: '已完成', // 项目进度，先固定值为100
+      progress: item.progress === null ? 0 : item.progress, // 设置progress字段，如果不存在则默认为0
       mindUrl: 'https://example.com/mindmap', // 脑图链接，先固定值
     }));
   }
