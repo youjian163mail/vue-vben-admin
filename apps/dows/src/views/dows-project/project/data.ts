@@ -111,6 +111,7 @@ export function useColumns<T = ProjectApi.Project>(
       field: 'projectMemberNum',
       title: $t('dows-project.project.projectMemberNum'),
       width: 100,
+      sortable: true,
     },
     {
       align: 'center',
