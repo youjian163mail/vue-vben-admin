@@ -46,7 +46,7 @@ async function getProjectList(params: Recordable<any> = {}) {
  * @param data 项目数据
  */
 async function createProject(
-  data: Omit<ProjectApi.Project, 'projectInstanceId'>,
+  data: Omit<ProjectApi.Project, 'projectInstanceId'>, // 排除 projectInstanceId 字段
 ) {
   const reqData = [data];
   return requestClient.post('/admin/project/entity', reqData);
@@ -55,14 +55,14 @@ async function createProject(
 /**
  * 更新项目
  *
- * @param projectInstanceId 项目 ID
  * @param data 项目数据
  */
 async function updateProject(
   projectInstanceId: string,
   data: Omit<ProjectApi.Project, 'projectInstanceId'>,
 ) {
-  return requestClient.put(`/admin/project/entity/${projectInstanceId}`, data);
+  const reqData = [{ ...data, projectInstanceId }];
+  return requestClient.put('/admin/project/entity', reqData);
 }
 
 /**
