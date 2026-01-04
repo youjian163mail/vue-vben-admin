@@ -8,6 +8,7 @@ export namespace ProjectApi {
     [key: string]: any;
     projectInstanceId: string;
     projectName: string;
+    projectCode: string;
     description?: string;
     progress?: number;
     id?: string;
@@ -15,6 +16,8 @@ export namespace ProjectApi {
     mindUrl?: string;
     startTime?: string;
     endTime?: string;
+    scope?: string;
+    icon?: string;
   }
 
   // Add the delete item interface
