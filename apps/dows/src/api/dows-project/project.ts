@@ -10,6 +10,11 @@ export namespace ProjectApi {
     projectName: string;
     description?: string;
     progress?: number;
+    id?: string;
+    projectMemberNum?: number;
+    mindUrl?: string;
+    startTime?: string;
+    endTime?: string;
   }
 
   // Add the delete item interface
