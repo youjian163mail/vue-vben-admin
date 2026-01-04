@@ -144,6 +144,15 @@ export function useColumns<T = ProjectApi.Project>(
           onClick: onActionClick,
         },
         name: 'CellOperation',
+        options: [
+          {
+            code: 'view',
+            text: '查看',
+            type: 'link',
+          },
+          'edit',
+          'delete',
+        ],
       },
       field: 'operation',
       fixed: 'right',
