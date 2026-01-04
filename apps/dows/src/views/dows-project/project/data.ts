@@ -8,6 +8,10 @@ import { $t } from '#/locales';
 
 const SCOPE_OPTIONS = [
   {
+    label: '请选择',
+    value: '',
+  },
+  {
     label: '成员可见',
     value: '0',
   },
@@ -74,6 +78,72 @@ export function useFormSchema(): VbenFormSchema[] {
       componentProps: {
         rows: 8, // 设置文本域高度为8行
       },
+    },
+  ];
+}
+
+export function useViewFormSchema(): VbenFormSchema[] {
+  return [
+    {
+      component: 'Input',
+      componentProps: {
+        readonly: true,
+      },
+      fieldName: 'projectName',
+      label: $t('dows-project.project.projectName'),
+    },
+    {
+      component: 'Input',
+      componentProps: {
+        readonly: true,
+      },
+      fieldName: 'projectCode',
+      label: $t('dows-project.project.projectCode'),
+    },
+    {
+      component: 'Input',
+      componentProps: {
+        readonly: true,
+      },
+      fieldName: 'scope',
+      label: $t('dows-project.project.scope'),
+    },
+    {
+      component: 'IconPicker',
+      componentProps: {
+        disabled: true,
+      },
+      fieldName: 'icon',
+      label: '图标',
+    },
+    {
+      component: 'DatePicker',
+      componentProps: {
+        disabled: true,
+        valueFormat: 'YYYY-MM-DDT00:00:00', // 设置日期格式
+        style: { width: '200px' }, // 设置日期选择器宽度与下拉框一致
+      },
+      fieldName: 'startTime',
+      label: $t('dows-project.project.startTime'),
+    },
+    {
+      component: 'DatePicker',
+      componentProps: {
+        disabled: true,
+        valueFormat: 'YYYY-MM-DDT23:59:59', // 设置日期格式
+        style: { width: '200px' }, // 设置日期选择器宽度与下拉框一致
+      },
+      fieldName: 'endTime',
+      label: $t('dows-project.project.endTime'),
+    },
+    {
+      component: 'Textarea',
+      componentProps: {
+        readonly: true,
+        rows: 8, // 设置文本域高度为8行
+      },
+      fieldName: 'description',
+      label: $t('dows-project.project.description'),
     },
   ];
 }

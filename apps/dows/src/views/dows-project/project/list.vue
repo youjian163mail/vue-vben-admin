@@ -81,10 +81,7 @@ function onActionClick(e: OnActionClickParams<ProjectApi.Project>) {
 }
 
 function onView(row: ProjectApi.Project) {
-  // TODO: Implement view functionality
-  // console.log('View project:', row);
-  // You can implement the view functionality here, such as opening a detail drawer or navigating to a detail page
-  formDrawerApi.setData(row).open();
+  formDrawerApi.setData({ ...row, mode: 'view' }).open();
 }
 
 /**
