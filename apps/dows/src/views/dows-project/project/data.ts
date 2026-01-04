@@ -100,14 +100,19 @@ export function useColumns<T = ProjectApi.Project>(
 ): VxeTableGridOptions['columns'] {
   return [
     {
-      align: 'left',
+      type: 'seq',
+      title: '序号',
+      width: 60,
+      align: 'center',
+    },
+    {
+      align: 'center',
       field: 'projectName',
       title: $t('dows-project.project.projectName'),
       width: 530,
-      className: 'pl-4', // 内容单元格添加左侧内边距
     },
     {
-      align: 'left',
+      align: 'center',
       field: 'projectMemberNum',
       title: $t('dows-project.project.projectMemberNum'),
       width: 100,
@@ -121,7 +126,7 @@ export function useColumns<T = ProjectApi.Project>(
       slots: { default: 'progress' },
     },
     {
-      align: 'left',
+      align: 'center',
       field: 'mindUrl',
       title: $t('dows-project.project.mindUrl'),
       width: 600,
