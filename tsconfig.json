@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "#/*": ["./src/*"],
+      "@vben/*": ["./packages/*/src"],
+      "@vben/constants": ["./packages/constants/src"],
+      "@vben/types": ["./packages/types/src"],
+      "@vben/utils": ["./packages/utils/src"]
+    }
+  },
+  "references": [
+    { "path": "./apps/dows/tsconfig.json" },
+    { "path": "./apps/web-antd/tsconfig.json" },
+    { "path": "./apps/web-ele/tsconfig.json" },
+    { "path": "./apps/web-naive/tsconfig.json" },
+    { "path": "./apps/web-tdesign/tsconfig.json" },
+    { "path": "./apps/backend-mock/tsconfig.json" },
+    { "path": "./packages/constants/tsconfig.json" },
+    { "path": "./packages/types/tsconfig.json" },
+    { "path": "./packages/utils/tsconfig.json" },
+    { "path": "./packages/stores/tsconfig.json" },
+    { "path": "./packages/locales/tsconfig.json" },
+    { "path": "./packages/styles/tsconfig.json" },
+    { "path": "./packages/effects/common-ui/tsconfig.json" },
+    { "path": "./packages/effects/hooks/tsconfig.json" },
+    { "path": "./packages/@core/base/shared/tsconfig.json" },
+    { "path": "./packages/@core/base/typings/tsconfig.json" },
+    { "path": "./packages/@core/base/icons/tsconfig.json" },
+    { "path": "./packages/@core/base/design/tsconfig.json" },
+    { "path": "./packages/@core/ui-kit/form-ui/tsconfig.json" },
+    { "path": "./packages/@core/ui-kit/popup-ui/tsconfig.json" },
+    { "path": "./packages/@core/ui-kit/shadcn-ui/tsconfig.json" },
+    { "path": "./packages/@core/ui-kit/layout-ui/tsconfig.json" },
+    { "path": "./packages/@core/ui-kit/menu-ui/tsconfig.json" },
+    { "path": "./packages/@core/ui-kit/tabs-ui/tsconfig.json" },
+    { "path": "./packages/@core/composables/tsconfig.json" },
+    { "path": "./packages/@core/preferences/tsconfig.json" }
+  ],
+  "include": [
+    "packages/**/*",
+    "apps/**/*",
+    "internal/**/*",
+    "scripts/**/*",
+    "./*.ts",
+    "./*.mts"
+  ],
+  "exclude": ["node_modules", "dist", ".turbo", "build"]
+}
