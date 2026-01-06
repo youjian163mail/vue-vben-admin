@@ -227,12 +227,17 @@ export function useColumns<T = ProjectApi.Project>(
           },
           'edit',
           'delete',
+          {
+            code: 'tagManage',
+            text: '标签管理',
+            type: 'link',
+          },
         ],
       },
       field: 'operation',
       fixed: 'right',
       title: $t('dows-project.project.operation'),
-      width: 130,
+      width: 250,
     },
   ];
 }

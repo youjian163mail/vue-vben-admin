@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { Recordable } from '@vben/types';
-
 import type {
   OnActionClickParams,
   VxeTableGridOptions,
 } from '#/adapter/vxe-table';
 import type { ProjectApi } from '#/api/dows-project/project';
+
+import { ref } from 'vue';
 
 import { Page, useVbenDrawer } from '@vben/common-ui';
 import { Plus } from '@vben/icons';
@@ -22,6 +22,7 @@ import { $t } from '#/locales';
 
 import { useColumns, useGridFormSchema } from './data';
 import Form from './modules/form.vue';
+import TagListModal from './modules/tag-list-modal.vue';
 
 const [FormDrawer, formDrawerApi] = useVbenDrawer({
   connectedComponent: Form,
@@ -52,7 +53,6 @@ const [Grid, gridApi] = useVbenVxeGrid({
       keyField: 'id',
       height: 80, // 设置行高度为80px
     },
-
     toolbarConfig: {
       custom: true,
       export: false,
@@ -71,6 +71,10 @@ function onActionClick(e: OnActionClickParams<ProjectApi.Project>) {
     }
     case 'edit': {
       onEdit(e.row);
+      break;
+    }
+    case 'tagManage': {
+      onTagManagement(e.row);
       break;
     }
     case 'view': {
@@ -104,20 +108,14 @@ function confirm(content: string, title: string) {
   });
 }
 
-/**
- * 状态开关即将改变
- * @param newStatus 期望改变的状态值
- * @param row 行数据
- * @returns 返回false则中止改变，返回其他值（undefined、true）则允许改变
- */
-async function onStatusChange(newStatus: number, row: ProjectApi.Project) {
-  const status: Recordable<string> = {
-    0: '禁用',
-    1: '启用',
-  };
+async function onStatusChange(row: ProjectApi.Project) {
+  const newStatus = row.status === 1 ? 0 : 1;
   try {
     await confirm(
-      `你要将${row.name}的状态切换为 【${status[newStatus.toString()]}】 吗？`,
+      $t('ui.actionMessage.changeStatus', [
+        row.projectName,
+        newStatus === 1 ? $t('ui.status.enabled') : $t('ui.status.disabled'),
+      ]),
       `切换状态`,
     );
     await updateProject(row.id, { status: newStatus });
@@ -133,14 +131,14 @@ function onEdit(row: ProjectApi.Project) {
 
 function onDelete(row: ProjectApi.Project) {
   const hideLoading = message.loading({
-    content: $t('ui.actionMessage.deleting', [row.name]),
+    content: $t('ui.actionMessage.deleting', [row.projectName]),
     duration: 0,
     key: 'action_process_msg',
   });
   deleteProject(row.id)
     .then(() => {
       message.success({
-        content: $t('ui.actionMessage.deleteSuccess', [row.name]),
+        content: $t('ui.actionMessage.deleteSuccess', [row.projectName]),
         key: 'action_process_msg',
       });
       onRefresh();
@@ -148,6 +146,14 @@ function onDelete(row: ProjectApi.Project) {
     .catch(() => {
       hideLoading();
     });
+}
+
+const selectedProject = ref<null | ProjectApi.Project>(null);
+const tagManagementModalVisible = ref(false);
+
+function onTagManagement(row: ProjectApi.Project) {
+  selectedProject.value = row;
+  tagManagementModalVisible.value = true;
 }
 
 function onRefresh() {
@@ -161,6 +167,12 @@ function onCreate() {
 <template>
   <Page auto-content-height>
     <FormDrawer class="w-[600px]" @success="onRefresh" />
+    <TagListModal
+      v-model:visible="tagManagementModalVisible"
+      :project="selectedProject"
+      @ok="tagManagementModalVisible = false"
+      @cancel="tagManagementModalVisible = false"
+    />
     <Grid :table-title="$t('dows-project.project.list')">
       <template #toolbar-tools>
         <Button type="primary" @click="onCreate">

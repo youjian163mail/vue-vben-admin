@@ -1,0 +1,39 @@
+{
+  "title": "Project Management",
+  "project": {
+    "title": "Project Management",
+    "list": "Project List",
+    "name": "Project",
+    "operation": "Operation",
+    "projectName": "Project Name",
+    "projectCode": "Project Code",
+    "projectMemberNum": "Project Members",
+    "progress": "Progress",
+    "mindUrl": "Mind Map URL",
+    "scope": "Visibility Scope",
+    "description": "Description",
+    "startTime": "Start Date",
+    "endTime": "End Date",
+    "memberVisible": "Member Visible",
+    "orgVisible": "Organization Visible",
+    "tag": "Tag"
+  },
+  "tag": {
+    "tagName": "Tag Name",
+    "tagNamePlaceholder": "Please enter tag name",
+    "tagColor": "Tag Color",
+    "tagColorPlaceholder": "Please enter tag color (optional)",
+    "tagManagement": "Tag Management",
+    "currentTags": "Current Tags",
+    "addTag": "Add Tag",
+    "noTags": "No tags",
+    "availableTags": "Available Tags",
+    "noAvailableTags": "No available tags",
+    "addNewTag": "Add New Tag",
+    "tagsUpdatedSuccessfully": "Tags updated successfully!",
+    "title": "Tag Management",
+    "list": "Tag List",
+    "name": "Tag",
+    "operation": "Operation"
+  }
+}

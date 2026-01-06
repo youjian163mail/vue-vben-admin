@@ -13,6 +13,27 @@
     "scope": "可见范围",
     "description": "描述",
     "startTime": "开始日期",
-    "endTime": "结束日期"
+    "endTime": "结束日期",
+    "memberVisible": "成员可见",
+    "orgVisible": "组织可见",
+    "tag": "标签"
+  },
+  "tag": {
+    "tagName": "标签名称",
+    "tagNamePlaceholder": "请输入标签名称",
+    "tagColor": "标签颜色",
+    "tagColorPlaceholder": "请输入标签颜色（可选）",
+    "tagManagement": "标签管理",
+    "currentTags": "当前标签",
+    "addTag": "添加标签",
+    "noTags": "暂无标签",
+    "availableTags": "可用标签",
+    "noAvailableTags": "暂无可用标签",
+    "addNewTag": "添加新标签",
+    "tagsUpdatedSuccessfully": "标签更新成功！",
+    "title": "标签管理",
+    "list": "标签列表",
+    "name": "标签",
+    "operation": "操作"
   }
 }
