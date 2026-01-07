@@ -48,9 +48,7 @@ function handleCancel() {
     v-model:open="internalVisible"
     :title="$t('dows-project.tag.tagManagement')"
     width="1200px"
-    :body-style="{ maxHeight: '70vh', overflow: 'hidden' }"
-    wrap-class-name="tag-management-modal-wrapper"
-    :centered="true"
+    :bodyStyle="{ maxHeight: '70vh', overflow: 'auto' }"
     @ok="handleOk"
     @cancel="handleCancel"
   >
@@ -59,7 +57,14 @@ function handleCancel() {
 </template>
 
 <style scoped>
-.tag-management-modal-wrapper {
-  overflow: hidden;
+:deep(.ant-modal) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: calc(100vh - 40px); /* 减去一些边距 */
+}
+
+:deep(.ant-modal-content) {
+  max-height: calc(100vh - 40px);
 }
 </style>

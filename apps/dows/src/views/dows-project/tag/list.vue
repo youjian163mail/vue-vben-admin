@@ -40,8 +40,14 @@ const [Grid, gridApi] = useVbenVxeGrid({
   },
   gridOptions: {
     columns: useColumns(onActionClick, onStatusChange),
-    height: 'auto',
+    height: 'calc(70vh - 180px)',
+    scrollY: { enabled: true, gt: 10 },
     keepSource: true,
+    pagerConfig: {
+      enabled: true,
+      pageSize: 20,
+      pageSizes: [10, 20, 30, 50, 100],
+    },
     proxyConfig: {
       ajax: {
         query: async ({ page }, formValues) => {
@@ -55,7 +61,6 @@ const [Grid, gridApi] = useVbenVxeGrid({
     },
     rowConfig: {
       keyField: 'id',
-      height: 80, // 设置行高度为80px
     },
     toolbarConfig: {
       custom: true,
@@ -137,5 +142,3 @@ function onCreate() {
     </Grid>
   </Page>
 </template>
-
-<style scoped></style>
