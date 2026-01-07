@@ -139,8 +139,4 @@ function onCreate() {
 </template>
 
 <style scoped>
-.tag-management-modal {
-  max-height: 70vh;
-  overflow-y: auto;
-}
 </style>

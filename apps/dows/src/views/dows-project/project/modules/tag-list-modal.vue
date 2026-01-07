@@ -47,10 +47,19 @@ function handleCancel() {
   <Modal
     v-model:open="internalVisible"
     :title="$t('dows-project.tag.tagManagement')"
-    width="900px"
+    width="1200px"
+    :bodyStyle="{ maxHeight: '70vh', overflow: 'hidden' }"
+    wrapClassName="tag-management-modal-wrapper"
+    :centered="true"
     @ok="handleOk"
     @cancel="handleCancel"
   >
     <TagList :project="project" />
   </Modal>
 </template>
+
+<style scoped>
+.tag-management-modal-wrapper {
+  overflow: hidden;
+}
+</style>
