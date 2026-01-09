@@ -44,12 +44,6 @@ export function useColumns<T = ProjectTagApi.ProjectTag>(
       width: 150,
     },
     {
-      align: 'center',
-      field: 'projectInstanceId',
-      title: '项目实例ID',
-      width: 200,
-    },
-    {
       align: 'left',
       cellRender: {
         attrs: {
@@ -59,11 +53,6 @@ export function useColumns<T = ProjectTagApi.ProjectTag>(
         },
         name: 'CellOperation',
         options: [
-          {
-            code: 'view',
-            text: '查看',
-            type: 'link',
-          },
           'edit',
           'delete',
         ],
@@ -98,11 +87,6 @@ function useBaseFormSchema(): VbenFormSchema[] {
       component: 'Input',
       fieldName: 'tagColor',
       label: $t('dows-project.tag.tagColor'),
-    },
-    {
-      component: 'Input',
-      fieldName: 'projectInstanceId',
-      label: '项目实例ID',
     },
   ];
 }

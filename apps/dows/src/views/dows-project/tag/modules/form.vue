@@ -55,7 +55,7 @@ const [Drawer, drawerApi] = useVbenDrawer({
     if (!valid) return;
     const values = await formApi.getValues();
     drawerApi.lock();
-    (id.value ? updateProjectTag(id.value, values) : createProjectTag(values))
+    (id.value ? updateProjectTag(id.value, values) : createProjectTag({...values, projectInstanceId: formData.value?.projectInstanceId}))
       .then(() => {
         emits('success');
         drawerApi.close();

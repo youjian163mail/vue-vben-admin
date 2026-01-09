@@ -114,7 +114,7 @@ function onRefresh() {
 }
 
 function onCreate() {
-  formDrawerApi.setData({}).open();
+  formDrawerApi.setData({ projectInstanceId: props.project?.id }).open();
 }
 </script>
 <template>
