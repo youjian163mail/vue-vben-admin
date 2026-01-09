@@ -52,10 +52,7 @@ export function useColumns<T = ProjectTagApi.ProjectTag>(
           onClick: onActionClick,
         },
         name: 'CellOperation',
-        options: [
-          'edit',
-          'delete',
-        ],
+        options: ['edit', 'delete'],
       },
       field: 'operation',
       fixed: 'right',
