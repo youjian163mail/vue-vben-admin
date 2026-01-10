@@ -11,10 +11,10 @@ import { computed, watch } from 'vue';
 import { Page, useVbenDrawer } from '@vben/common-ui';
 import { Plus } from '@vben/icons';
 
-import { Button } from 'ant-design-vue';
+import { Button, message, Modal } from 'ant-design-vue';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
-import { getProjectTagList } from '#/api/dows-project/tag';
+import { deleteProjectTag, getProjectTagList } from '#/api/dows-project/tag';
 import { $t } from '#/locales';
 
 import { useColumns, useGridFormSchema } from './data';
@@ -80,18 +80,16 @@ watch(
   () => props.project,
   async (newProject) => {
     if (newProject) {
-      gridApi.setProps({
-        gridOptions: {
-          proxyConfig: {
-            ajax: {
-              query: async ({ page }, formValues) => {
-                return await getProjectTagList({
-                  pageNum: page.currentPage,
-                  pageSize: page.pageSize,
-                  projectId: projectId.value,
-                  ...formValues,
-                });
-              },
+      gridApi.setGridOptions({
+        proxyConfig: {
+          ajax: {
+            query: async ({ page }, formValues) => {
+              return await getProjectTagList({
+                pageNum: page.currentPage,
+                pageSize: page.pageSize,
+                projectId: projectId.value,
+                ...formValues,
+              });
             },
           },
         },
@@ -101,12 +99,51 @@ watch(
   { immediate: true },
 );
 
-function onActionClick(_e: OnActionClickParams<ProjectTagApi.ProjectTag>) {
-  // No actions needed
+function onActionClick(e: OnActionClickParams<ProjectTagApi.ProjectTag>) {
+  switch (e.code) {
+    case 'delete': {
+      onDelete(e.row);
+      break;
+    }
+    case 'edit': {
+      onEdit(e.row);
+      break;
+    }
+  }
 }
 
-function onStatusChange(_row: ProjectTagApi.ProjectTag) {
-  return true;
+function onEdit(row: ProjectTagApi.ProjectTag) {
+  formDrawerApi.setData({ ...row, mode: 'edit' }).open();
+}
+
+function onDelete(row: ProjectTagApi.ProjectTag) {
+  const hideLoading = message.loading({
+    content: $t('ui.actionMessage.deleting', [row.tagName]),
+    duration: 0,
+    key: 'action_process_msg',
+  });
+  deleteProjectTag(row.projectTagId)
+    .then(() => {
+      message.success({
+        content: $t('ui.actionMessage.deleteSuccess', [row.tagName]),
+        key: 'action_process_msg',
+      });
+      onRefresh();
+    })
+    .catch(() => {
+      hideLoading();
+    });
+}
+
+async function onStatusChange(row: ProjectTagApi.ProjectTag) {
+  const newStatus = row.status === 1 ? 0 : 1;
+  try {
+    // 直接更新状态，不显示确认对话框
+    await updateProjectTag(row.projectTagId, { status: newStatus });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function onRefresh() {

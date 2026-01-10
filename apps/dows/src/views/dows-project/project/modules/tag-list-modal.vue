@@ -47,7 +47,7 @@ function handleCancel() {
   <Modal
     v-model:open="internalVisible"
     :title="$t('dows-project.tag.tagManagement')"
-    width="1200px"
+    width="800px"
     :body-style="{ maxHeight: '80vh', overflow: 'auto' }"
     @ok="handleOk"
     @cancel="handleCancel"

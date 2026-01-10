@@ -44,15 +44,19 @@ export function useColumns<T = ProjectTagApi.ProjectTag>(
       width: 150,
     },
     {
-      align: 'left',
+      align: 'right',  // 修改为右对齐
       cellRender: {
         attrs: {
+          codeField: 'code',
           nameField: 'tagName',
           nameTitle: $t('dows-project.tag.name'),
           onClick: onActionClick,
         },
         name: 'CellOperation',
-        options: ['edit', 'delete'],
+        options: [
+          { label: $t('ui.actionTitle.edit'), code: 'edit', type: 'link' },
+          { label: $t('ui.actionTitle.delete'), code: 'delete', type: 'link' },
+        ],
       },
       field: 'operation',
       fixed: 'right',
