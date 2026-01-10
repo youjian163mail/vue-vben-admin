@@ -1,26 +1,26 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "module": "ESNext",
+    "composite": true,
     "target": "ES2020",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "esModuleInterop": true,
-    "allowJs": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "noEmit": true,
-    "composite": true,
     "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "paths": {
       "#/*": ["./src/*"],
       "@vben/*": ["./packages/*/src"],
       "@vben/constants": ["./packages/constants/src"],
       "@vben/types": ["./packages/types/src"],
       "@vben/utils": ["./packages/utils/src"]
-    }
+    },
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "references": [
     { "path": "./apps/dows/tsconfig.json" },
