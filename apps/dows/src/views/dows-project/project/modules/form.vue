@@ -101,6 +101,14 @@ const [Drawer, drawerApi] = useVbenDrawer({
         }
         formApi.setValues(transformedData);
       }
+
+      // 根据模式设置取消按钮的显示状态
+      const shouldShowCancel = mode.value !== 'view';
+      drawerApi.setState({
+        showCancelButton: shouldShowCancel,
+        confirmText:
+          mode.value === 'view' ? $t('btn-common.close') : $t('common.confirm'),
+      });
     }
   },
 });
