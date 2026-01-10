@@ -10,14 +10,10 @@ import { ref } from 'vue';
 import { Page, useVbenDrawer } from '@vben/common-ui';
 import { Plus } from '@vben/icons';
 
-import { Button, message, Modal } from 'ant-design-vue';
+import { Button, message } from 'ant-design-vue';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
-import {
-  deleteProject,
-  getProjectList,
-  updateProject,
-} from '#/api/dows-project/project';
+import { deleteProject, getProjectList } from '#/api/dows-project/project';
 import { $t } from '#/locales';
 
 import { useColumns, useGridFormSchema } from './data';
@@ -35,7 +31,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
     submitOnChange: true,
   },
   gridOptions: {
-    columns: useColumns(onActionClick, onStatusChange),
+    columns: useColumns(onActionClick),
     height: 'auto',
     keepSource: true,
     proxyConfig: {
@@ -88,43 +84,6 @@ function onView(row: ProjectApi.Project) {
   formDrawerApi.setData({ ...row, mode: 'view' }).open();
 }
 
-/**
- * 将Antd的Modal.confirm封装为promise，方便在异步函数中调用。
- * @param content 提示内容
- * @param title 提示标题
- */
-function confirm(content: string, title: string) {
-  return new Promise((reslove, reject) => {
-    Modal.confirm({
-      content,
-      onCancel() {
-        reject(new Error('已取消'));
-      },
-      onOk() {
-        reslove(true);
-      },
-      title,
-    });
-  });
-}
-
-async function onStatusChange(row: ProjectApi.Project) {
-  const newStatus = row.status === 1 ? 0 : 1;
-  try {
-    await confirm(
-      $t('ui.actionMessage.changeStatus', [
-        row.projectName,
-        newStatus === 1 ? $t('ui.status.enabled') : $t('ui.status.disabled'),
-      ]),
-      `切换状态`,
-    );
-    await updateProject(row.id, { status: newStatus });
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 function onEdit(row: ProjectApi.Project) {
   formDrawerApi.setData(row).open();
 }
@@ -135,7 +94,9 @@ function onDelete(row: ProjectApi.Project) {
     duration: 0,
     key: 'action_process_msg',
   });
-  deleteProject(row.id)
+  // Ensure we're passing a valid string ID, using projectInstanceId as fallback if id is undefined
+  const projectId = row.id ?? row.projectInstanceId;
+  deleteProject(projectId)
     .then(() => {
       message.success({
         content: $t('ui.actionMessage.deleteSuccess', [row.projectName]),
@@ -169,7 +130,7 @@ function onCreate() {
     <FormDrawer class="w-[600px]" @success="onRefresh" />
     <TagListModal
       v-model:visible="tagManagementModalVisible"
-      :project="selectedProject"
+      :project="selectedProject || undefined"
       @ok="tagManagementModalVisible = false"
       @cancel="tagManagementModalVisible = false"
     />
