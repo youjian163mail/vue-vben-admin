@@ -49,8 +49,8 @@ export function useColumns<T = ProjectTagApi.ProjectTag>(
         },
         name: 'CellOperation',
         options: [
-          { label: $t('ui.actionTitle.edit'), code: 'edit', type: 'link' },
-          { label: $t('ui.actionTitle.delete'), code: 'delete', type: 'link' },
+          { text: $t('ui.actionTitle.edit'), code: 'edit', type: 'link' },
+          { text: $t('ui.actionTitle.delete'), code: 'delete', type: 'link' },
         ],
       },
       field: 'operation',
