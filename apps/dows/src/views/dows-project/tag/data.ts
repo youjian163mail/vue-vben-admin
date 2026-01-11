@@ -1,8 +1,6 @@
-import type { VxeTableGridOptions } from '#/adapter/vxe-table';
+import type { VbenFormSchema } from '#/adapter/form';
+import type { OnActionClickFn, VxeTableGridOptions } from '#/adapter/vxe-table';
 import type { ProjectTagApi } from '#/api/dows-project/tag';
-import type { OnActionClickFn } from '#/components/adapter/vxe-table/src/types';
-
-import { z } from '@vben/common-ui';
 
 import { $t } from '#/locales';
 
@@ -10,7 +8,7 @@ import { $t } from '#/locales';
 type _FormMode = 'create' | 'edit' | 'view';
 
 // grid 搜索表单
-export function useGridFormSchema(): VxeFormSchema[] {
+export function useGridFormSchema(): VbenFormSchema[] {
   return [
     {
       component: 'Input',
@@ -73,16 +71,7 @@ function useBaseFormSchema(): VbenFormSchema[] {
       component: 'Input',
       fieldName: 'tagName',
       label: $t('dows-project.tag.tagName'),
-      rules: z
-        .string()
-        .min(
-          1,
-          $t('ui.formRules.minLength', [$t('dows-project.tag.tagName'), 1]),
-        )
-        .max(
-          50,
-          $t('ui.formRules.maxLength', [$t('dows-project.tag.tagName'), 50]),
-        ),
+      rules: 'required',
     },
     {
       component: 'Input',
