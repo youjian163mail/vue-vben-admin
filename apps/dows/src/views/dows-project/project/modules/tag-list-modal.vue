@@ -48,7 +48,7 @@ const internalVisible = computed({
       class="tag-list-container"
       style="display: flex; flex: 1; flex-direction: column; overflow: hidden"
     >
-      <div style="flex: 1; overflow: auto; min-height: 0">
+      <div style="flex: 1; min-height: 0; overflow: auto">
         <TagList :project="project" style="height: 100%" />
       </div>
     </div>
