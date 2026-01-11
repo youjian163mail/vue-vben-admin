@@ -39,7 +39,7 @@ export function useColumns<T = ProjectTagApi.ProjectTag>(
       width: 150,
     },
     {
-      align: 'center', // 修改为右对齐
+      align: 'center',
       cellRender: {
         attrs: {
           codeField: 'code',
