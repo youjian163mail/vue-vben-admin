@@ -49,22 +49,10 @@ function handleCancel() {
     :title="$t('dows-project.tag.tagManagement')"
     width="800px"
     :body-style="{ maxHeight: '80vh', overflow: 'auto' }"
+    centered
     @ok="handleOk"
     @cancel="handleCancel"
   >
     <TagList :project="project" />
   </Modal>
 </template>
-
-<style scoped>
-:deep(.ant-modal) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-height: calc(100vh - 40px); /* 减去一些边距 */
-}
-
-:deep(.ant-modal-content) {
-  max-height: calc(100vh - 40px);
-}
-</style>
