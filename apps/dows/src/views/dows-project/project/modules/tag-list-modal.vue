@@ -16,8 +16,6 @@ interface Props {
 
 interface Emits {
   (e: 'update:visible', value: boolean): void;
-  (e: 'ok'): void;
-  (e: 'cancel'): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -31,37 +29,26 @@ const internalVisible = computed({
   get: () => props.visible,
   set: (value) => emit('update:visible', value),
 });
-
-function handleOk() {
-  emit('ok');
-  internalVisible.value = false;
-}
-
-function handleCancel() {
-  emit('cancel');
-  internalVisible.value = false;
-}
 </script>
 
 <template>
   <Modal
     v-model:open="internalVisible"
     :title="$t('dows-project.tag.tagManagement')"
-    width="800px"
+    width="900px"
     :body-style="{
-      height: '70vh',
+      height: '72vh',
       display: 'flex',
       flexDirection: 'column',
     }"
     centered
-    @ok="handleOk"
-    @cancel="handleCancel"
+    :footer="null"
   >
     <div
       class="tag-list-container"
       style="display: flex; flex: 1; flex-direction: column; overflow: hidden"
     >
-      <div style="flex: 1; min-height: 0; overflow: auto">
+      <div style="flex: 1; overflow: auto; min-height: 0">
         <TagList :project="project" style="height: 100%" />
       </div>
     </div>

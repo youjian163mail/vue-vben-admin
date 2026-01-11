@@ -30,13 +30,13 @@ export function useColumns<T = ProjectTagApi.ProjectTag>(
       align: 'center',
       field: 'tagName',
       title: $t('dows-project.tag.tagName'),
-      width: 350,
+      width: 400,
     },
     {
       align: 'center',
       field: 'tagColor',
       title: $t('dows-project.tag.tagColor'),
-      width: 150,
+      width: 200,
     },
     {
       align: 'center',

@@ -44,13 +44,11 @@ const [Grid, gridApi] = useVbenVxeGrid({
   },
   gridOptions: {
     columns: useColumns(onActionClick),
-    height: props.project ? 'auto' : 'calc(70vh - 180px)',
+    height: props.project ? 'auto' : 'calc(72vh - 180px)',
     scrollY: { enabled: true, gt: 10 },
     keepSource: true,
     pagerConfig: {
-      enabled: true,
-      pageSize: 20,
-      pageSizes: [10, 20, 30, 50, 100],
+      pageSize: 10,
     },
     proxyConfig: {
       ajax: {
