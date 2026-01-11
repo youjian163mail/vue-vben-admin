@@ -4,9 +4,6 @@ import type { ProjectTagApi } from '#/api/dows-project/tag';
 
 import { $t } from '#/locales';
 
-// 表单模式
-type _FormMode = 'create' | 'edit' | 'view';
-
 // grid 搜索表单
 export function useGridFormSchema(): VbenFormSchema[] {
   return [

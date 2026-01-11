@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { DataNode } from 'ant-design-vue/es/tree';
-
 import type { ProjectTagApi } from '#/api/dows-project/tag';
 
 import { computed, nextTick, ref, watch } from 'vue';
@@ -9,7 +7,6 @@ import { useVbenDrawer } from '@vben/common-ui';
 
 import { useVbenForm } from '#/adapter/form';
 import { createProjectTag, updateProjectTag } from '#/api/dows-project/tag';
-import { getMenuList } from '#/api/system/menu';
 import { $t } from '#/locales';
 
 import { useFormSchema, useViewFormSchema } from '../data';
@@ -39,9 +36,6 @@ watch(
   },
   { immediate: true },
 );
-
-const permissions = ref<DataNode[]>([]);
-const loadingPermissions = ref(false);
 
 const id = ref();
 const [Drawer, drawerApi] = useVbenDrawer({
@@ -91,10 +85,6 @@ const [Drawer, drawerApi] = useVbenDrawer({
         mode.value = 'create';
       }
 
-      if (permissions.value.length === 0) {
-        await loadPermissions();
-      }
-
       // Update form schema based on mode and wait for it to be applied
       formApi.setState({ schema: schema.value });
       await nextTick();
@@ -116,16 +106,6 @@ const [Drawer, drawerApi] = useVbenDrawer({
   },
 });
 
-async function loadPermissions() {
-  loadingPermissions.value = true;
-  try {
-    const res = await getMenuList();
-    permissions.value = res as unknown as DataNode[];
-  } finally {
-    loadingPermissions.value = false;
-  }
-}
-
 const getDrawerTitle = computed(() => {
   if (mode.value === 'view') {
     return $t('ui.actionTitle.view', $t('dows-project.tag.name'));
@@ -140,20 +120,3 @@ const getDrawerTitle = computed(() => {
     <Form />
   </Drawer>
 </template>
-<style lang="css" scoped>
-:deep(.ant-tree-title) {
-  .tree-actions {
-    display: none;
-    margin-left: 20px;
-  }
-}
-
-:deep(.ant-tree-title:hover) {
-  .tree-actions {
-    display: flex;
-    flex: auto;
-    justify-content: flex-end;
-    margin-left: 20px;
-  }
-}
-</style>
