@@ -51,13 +51,13 @@ function handleCancel() {
     :body-style="{
       height: '70vh',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
     }"
     centered
     @ok="handleOk"
     @cancel="handleCancel"
   >
-    <div class="tag-list-container" style="flex: 1; overflow: auto;">
+    <div class="tag-list-container" style="flex: 1; overflow: auto">
       <TagList :project="project" />
     </div>
   </Modal>
