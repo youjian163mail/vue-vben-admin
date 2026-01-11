@@ -11,6 +11,7 @@ import { useVbenForm } from '#/adapter/form';
 import { createProject, updateProject } from '#/api/dows-project/project';
 import { getMenuList } from '#/api/system/menu';
 import { $t } from '#/locales';
+import { nullToEmptyString } from '#/utils/type-check';
 
 import { useFormSchema, useViewFormSchema } from '../data';
 
@@ -108,7 +109,7 @@ const [Drawer, drawerApi] = useVbenDrawer({
           };
         } else {
           // 非view模式下的一般转换
-          transformedData.scope = data.scope === null ? '' : String(data.scope);
+          transformedData.scope = nullToEmptyString(data.scope);
         }
 
         formApi.setValues(transformedData);
