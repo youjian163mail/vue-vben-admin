@@ -23,11 +23,6 @@ import TagListModal from './modules/tag-list-modal.vue';
 const [FormDrawer, formDrawerApi] = useVbenDrawer({
   connectedComponent: Form,
   destroyOnClose: true,
-  onCancel() {
-    formDrawerApi.close();
-  },
-  showCancelButton: false, // 默认为false
-  cancelText: $t('common.cancel'),
 });
 
 const [Grid, gridApi] = useVbenVxeGrid({
@@ -87,20 +82,10 @@ function onActionClick(e: OnActionClickParams<ProjectApi.Project>) {
 
 function onView(row: ProjectApi.Project) {
   formDrawerApi.setData({ ...row, mode: 'view' }).open();
-  // 在设置数据后立即更新取消按钮的显示状态和确认按钮的文本
-  formDrawerApi.setState({ 
-    showCancelButton: false,
-    confirmText: $t('common.close')
-  });
 }
 
 function onEdit(row: ProjectApi.Project) {
-  formDrawerApi.setData(row).open();
-  // 在设置数据后立即更新取消按钮的显示状态和确认按钮的文本
-  formDrawerApi.setState({ 
-    showCancelButton: true,
-    confirmText: row.id ? $t('common.update') : $t('common.create')
-  });
+  formDrawerApi.setData({ ...row, mode: 'edit' }).open();
 }
 
 function onDelete(row: ProjectApi.Project) {
@@ -137,7 +122,7 @@ function onRefresh() {
 }
 
 function onCreate() {
-  formDrawerApi.setData({}).open();
+  formDrawerApi.setData({ mode: 'create' }).open();
 }
 </script>
 <template>

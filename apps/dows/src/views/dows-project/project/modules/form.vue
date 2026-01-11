@@ -88,27 +88,31 @@ const [Drawer, drawerApi] = useVbenDrawer({
       await nextTick();
       await nextTick(); // Double nextTick to ensure DOM updates
 
-      if (data) {
-        // Transform data based on mode
-        let transformedData = data;
-        transformedData.scope = data.scope === null ? '' : String(data.scope);
-        if (mode.value === 'view') {
-          // For view mode: transform to display label text
-          transformedData = {
-            ...data,
-            scope: getScopeLabel(data.scope),
-          };
-        }
-        formApi.setValues(transformedData);
-      }
-
-      // 根据模式设置取消按钮的显示状态
+      // 根据模式设置取消按钮的显示状态 - 提前处理
       const shouldShowCancel = mode.value !== 'view';
       drawerApi.setState({
         showCancelButton: shouldShowCancel,
         confirmText:
           mode.value === 'view' ? $t('btn-common.close') : $t('common.confirm'),
       });
+
+      if (data) {
+        // Transform data based on mode
+        let transformedData = data;
+
+        // 如果是view模式，先处理数据显示格式
+        if (mode.value === 'view') {
+          transformedData = {
+            ...data,
+            scope: getScopeLabel(data.scope),
+          };
+        } else {
+          // 非view模式下的一般转换
+          transformedData.scope = data.scope === null ? '' : String(data.scope);
+        }
+
+        formApi.setValues(transformedData);
+      }
     }
   },
 });
