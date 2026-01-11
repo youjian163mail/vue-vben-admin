@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { DataNode } from 'ant-design-vue/es/tree';
-
 import type { ProjectApi } from '#/api/dows-project/project';
 
 import { computed, nextTick, ref, watch } from 'vue';
@@ -9,9 +7,7 @@ import { useVbenDrawer } from '@vben/common-ui';
 
 import { useVbenForm } from '#/adapter/form';
 import { createProject, updateProject } from '#/api/dows-project/project';
-import { getMenuList } from '#/api/system/menu';
 import { $t } from '#/locales';
-import { nullToEmptyString } from '#/utils/type-check';
 
 import { useFormSchema, useViewFormSchema } from '../data';
 
@@ -40,9 +36,6 @@ watch(
   },
   { immediate: true },
 );
-
-const permissions = ref<DataNode[]>([]);
-const loadingPermissions = ref(false);
 
 const id = ref();
 const [Drawer, drawerApi] = useVbenDrawer({
@@ -80,10 +73,6 @@ const [Drawer, drawerApi] = useVbenDrawer({
         mode.value = 'create';
       }
 
-      if (permissions.value.length === 0) {
-        await loadPermissions();
-      }
-
       // Update form schema based on mode and wait for it to be applied
       formApi.setState({ schema: schema.value });
       await nextTick();
@@ -100,33 +89,24 @@ const [Drawer, drawerApi] = useVbenDrawer({
       if (data) {
         // Transform data based on mode
         let transformedData = data;
-
-        // 如果是view模式，先处理数据显示格式
+        transformedData.scope = data.scope === null ? '' : String(data.scope);
         if (mode.value === 'view') {
+          // For view mode: transform to display label text
           transformedData = {
             ...data,
             scope: getScopeLabel(data.scope),
           };
-        } else {
-          // 非view模式下的一般转换
-          transformedData.scope = nullToEmptyString(data.scope);
         }
-
         formApi.setValues(transformedData);
+      } else {
+        // 对于创建模式，设置默认值
+        formApi.setValues({
+          scope: '', // 设置默认的scope为空字符串
+        });
       }
     }
   },
 });
-
-async function loadPermissions() {
-  loadingPermissions.value = true;
-  try {
-    const res = await getMenuList();
-    permissions.value = res as unknown as DataNode[];
-  } finally {
-    loadingPermissions.value = false;
-  }
-}
 
 function getScopeLabel(scopeValue: null | number | string | undefined) {
   if (scopeValue === null || scopeValue === undefined) {
