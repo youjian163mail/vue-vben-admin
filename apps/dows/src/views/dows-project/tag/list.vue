@@ -33,6 +33,9 @@ const [FormDrawer, formDrawerApi] = useVbenDrawer({
   destroyOnClose: true,
 });
 
+// 获取项目ID
+const projectId = computed(() => props.project?.id);
+
 const [Grid, gridApi] = useVbenVxeGrid({
   formOptions: {
     schema: useGridFormSchema(),
@@ -40,7 +43,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
     wrapperClass: 'lg:grid-cols-2',
   },
   gridOptions: {
-    columns: useColumns(onActionClick, onStatusChange),
+    columns: useColumns(onActionClick),
     height: 'calc(70vh - 180px)',
     scrollY: { enabled: true, gt: 10 },
     keepSource: true,
@@ -52,11 +55,19 @@ const [Grid, gridApi] = useVbenVxeGrid({
     proxyConfig: {
       ajax: {
         query: async ({ page }, formValues) => {
-          return await getProjectTagList({
-            pageNum: page.currentPage,
-            pageSize: page.pageSize,
-            ...formValues,
-          });
+          // 如果有项目ID，则添加到查询参数中
+          return await (projectId.value
+            ? getProjectTagList({
+                pageNum: page.currentPage,
+                pageSize: page.pageSize,
+                projectId: projectId.value,
+                ...formValues,
+              })
+            : getProjectTagList({
+                pageNum: page.currentPage,
+                pageSize: page.pageSize,
+                ...formValues,
+              }));
         },
       },
     },
@@ -73,28 +84,13 @@ const [Grid, gridApi] = useVbenVxeGrid({
   } as VxeTableGridOptions<ProjectTagApi.ProjectTag>,
 });
 
-// 获取项目ID
-const projectId = computed(() => props.project?.id);
-
-// Load tags when component is mounted or project changes
+// 监听项目变化并刷新数据
 watch(
   () => props.project,
   async (newProject) => {
     if (newProject) {
-      gridApi.setGridOptions({
-        proxyConfig: {
-          ajax: {
-            query: async ({ page }, formValues) => {
-              return await getProjectTagList({
-                pageNum: page.currentPage,
-                pageSize: page.pageSize,
-                projectId: projectId.value,
-                ...formValues,
-              });
-            },
-          },
-        },
-      });
+      // 当项目变化时，重新查询数据
+      gridApi.query();
     }
   },
   { immediate: true },
@@ -136,17 +132,6 @@ function onDelete(row: ProjectTagApi.ProjectTag) {
     });
 }
 
-async function onStatusChange(row: ProjectTagApi.ProjectTag) {
-  const newStatus = row.status === 1 ? 0 : 1;
-  try {
-    // 直接更新状态，不显示确认对话框
-    await updateProjectTag(row.projectTagId, { status: newStatus });
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 function onRefresh() {
   gridApi.query();
 }
@@ -161,16 +146,6 @@ function onCreate() {
 
     <!-- 项目标签管理界面，当传入project参数时显示 -->
     <Grid v-if="project" :table-title="$t('dows-project.tag.list')">
-      <template #toolbar-tools>
-        <Button type="primary" @click="onCreate">
-          <Plus class="size-5" />
-          {{ $t('ui.actionTitle.create', [$t('dows-project.tag.name')]) }}
-        </Button>
-      </template>
-    </Grid>
-
-    <!-- 默认标签列表界面，当没有传入project参数时显示 -->
-    <Grid v-else :table-title="$t('dows-project.tag.list')">
       <template #toolbar-tools>
         <Button type="primary" @click="onCreate">
           <Plus class="size-5" />
