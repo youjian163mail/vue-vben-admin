@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { ProjectApi } from '#/api/dows-project/project';
 
 import { computed } from 'vue';
@@ -57,8 +57,13 @@ function handleCancel() {
     @ok="handleOk"
     @cancel="handleCancel"
   >
-    <div class="tag-list-container" style="flex: 1; overflow: auto">
-      <TagList :project="project" />
+    <div
+      class="tag-list-container"
+      style="display: flex; flex: 1; flex-direction: column; overflow: hidden"
+    >
+      <div style="flex: 1; overflow: auto; min-height: 0;">
+        <TagList :project="project" style="height: 100%" />
+      </div>
     </div>
   </Modal>
 </template>
