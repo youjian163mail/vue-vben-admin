@@ -55,20 +55,18 @@ const [Grid, gridApi] = useVbenVxeGrid({
     proxyConfig: {
       ajax: {
         query: async ({ page }, formValues) => {
-          if (projectId.value) {
-            return await getProjectTagList({
-              pageNum: page.currentPage,
-              pageSize: page.pageSize,
-              projectId: projectId.value,
-              ...formValues,
-            });
-          } else {
-            return await getProjectTagList({
-              pageNum: page.currentPage,
-              pageSize: page.pageSize,
-              ...formValues,
-            });
-          }
+          return await (projectId.value
+            ? getProjectTagList({
+                pageNum: page.currentPage,
+                pageSize: page.pageSize,
+                projectId: projectId.value,
+                ...formValues,
+              })
+            : getProjectTagList({
+                pageNum: page.currentPage,
+                pageSize: page.pageSize,
+                ...formValues,
+              }));
         },
       },
     },
