@@ -211,7 +211,7 @@ export function useColumns<T = ProjectApi.Project>(
       },
     },
     {
-      align: 'left',
+      align: 'center',
       cellRender: {
         attrs: {
           nameField: 'projectName',
