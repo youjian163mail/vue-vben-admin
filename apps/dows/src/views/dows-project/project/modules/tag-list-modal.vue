@@ -49,21 +49,23 @@ function handleCancel() {
     :title="$t('dows-project.tag.tagManagement')"
     width="800px"
     :body-style="{
-      maxHeight: '80vh',
-      overflow: 'hidden',
+      height: '70vh',
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'column'
     }"
     centered
     @ok="handleOk"
     @cancel="handleCancel"
   >
-    <div style="flex: 1; overflow: hidden">
+    <div class="tag-list-container" style="flex: 1; overflow: auto;">
       <TagList :project="project" />
     </div>
   </Modal>
 </template>
 
 <style scoped>
-/* 保持原有样式 */
+/* 保持容器内容在底部 */
+.tag-list-container {
+  min-height: 0; /* 解决flex子项overflow失效问题 */
+}
 </style>
