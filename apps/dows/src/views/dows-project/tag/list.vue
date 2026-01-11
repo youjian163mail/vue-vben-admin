@@ -44,7 +44,7 @@ const [Grid, gridApi] = useVbenVxeGrid({
   },
   gridOptions: {
     columns: useColumns(onActionClick),
-    height: 'calc(70vh - 180px)',
+    height: props.project ? '400px' : 'calc(70vh - 180px)',
     scrollY: { enabled: true, gt: 10 },
     keepSource: true,
     pagerConfig: {
@@ -55,19 +55,20 @@ const [Grid, gridApi] = useVbenVxeGrid({
     proxyConfig: {
       ajax: {
         query: async ({ page }, formValues) => {
-          // 如果有项目ID，则添加到查询参数中
-          return await (projectId.value
-            ? getProjectTagList({
-                pageNum: page.currentPage,
-                pageSize: page.pageSize,
-                projectId: projectId.value,
-                ...formValues,
-              })
-            : getProjectTagList({
-                pageNum: page.currentPage,
-                pageSize: page.pageSize,
-                ...formValues,
-              }));
+          if (projectId.value) {
+            return await getProjectTagList({
+              pageNum: page.currentPage,
+              pageSize: page.pageSize,
+              projectId: projectId.value,
+              ...formValues,
+            });
+          } else {
+            return await getProjectTagList({
+              pageNum: page.currentPage,
+              pageSize: page.pageSize,
+              ...formValues,
+            });
+          }
         },
       },
     },

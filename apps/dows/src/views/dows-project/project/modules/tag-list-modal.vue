@@ -48,11 +48,22 @@ function handleCancel() {
     v-model:open="internalVisible"
     :title="$t('dows-project.tag.tagManagement')"
     width="800px"
-    :body-style="{ maxHeight: '80vh', overflow: 'auto' }"
+    :body-style="{
+      maxHeight: '80vh',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+    }"
     centered
     @ok="handleOk"
     @cancel="handleCancel"
   >
-    <TagList :project="project" />
+    <div style="flex: 1; overflow: hidden">
+      <TagList :project="project" />
+    </div>
   </Modal>
 </template>
+
+<style scoped>
+/* 保持原有样式 */
+</style>
