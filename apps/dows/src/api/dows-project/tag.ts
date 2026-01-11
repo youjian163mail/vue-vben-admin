@@ -32,7 +32,7 @@ async function getProjectTagList(params: Recordable<any> = {}) {
   if (finalRes.items) {
     finalRes.items = finalRes.items.map((item) => ({
       ...item,
-      projectTagId: item.projectTagId || item.id,
+      id: item.id || item.projectTagId,
     }));
   }
 
