@@ -112,21 +112,17 @@ export function useViewFormSchema(): VbenFormSchema[] {
       label: '图标',
     },
     {
-      component: 'DatePicker',
+      component: markRaw(ReadOnlyInputAsLabel),
       componentProps: {
-        disabled: true,
-        valueFormat: 'YYYY-MM-DDT00:00:00', // 设置日期格式
-        style: { width: '200px' }, // 设置日期选择器宽度与下拉框一致
+        formatType: 'date',
       },
       fieldName: 'startTime',
       label: $t('dows-project.project.startTime'),
     },
     {
-      component: 'DatePicker',
+      component: markRaw(ReadOnlyInputAsLabel),
       componentProps: {
-        disabled: true,
-        valueFormat: 'YYYY-MM-DDT23:59:59', // 设置日期格式
-        style: { width: '200px' }, // 设置日期选择器宽度与下拉框一致
+        formatType: 'date',
       },
       fieldName: 'endTime',
       label: $t('dows-project.project.endTime'),
