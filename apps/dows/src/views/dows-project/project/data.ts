@@ -8,8 +8,8 @@ import dayjs from 'dayjs';
 
 import { $t } from '#/locales';
 
-import ReadOnlyIconAsLabel from './components/ReadOnlyIconAsLabel.vue';
-import ReadOnlyInputAsLabel from './components/ReadOnlyInputAsLabel.vue';
+import ReadOnlyIconAsLabel from '../../common-components/ReadOnlyIconAsLabel.vue';
+import ReadOnlyInputAsLabel from '../../common-components/ReadOnlyInputAsLabel.vue';
 
 const SCOPE_OPTIONS = [
   {
