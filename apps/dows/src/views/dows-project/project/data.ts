@@ -2,9 +2,13 @@ import type { VbenFormSchema } from '#/adapter/form';
 import type { OnActionClickFn, VxeTableGridOptions } from '#/adapter/vxe-table';
 import type { ProjectApi } from '#/api/dows-project/project';
 
+import { markRaw } from 'vue';
+
 import dayjs from 'dayjs';
 
 import { $t } from '#/locales';
+
+import ReadOnlyInputAsLabel from './components/ReadOnlyInputAsLabel.vue';
 
 const SCOPE_OPTIONS = [
   {
@@ -85,29 +89,17 @@ export function useFormSchema(): VbenFormSchema[] {
 export function useViewFormSchema(): VbenFormSchema[] {
   return [
     {
-      component: 'Input',
-      componentProps: {
-        readonly: true,
-        placeholder: '', // 添加空字符串作为placeholder，防止显示"请输入"
-      },
+      component: markRaw(ReadOnlyInputAsLabel),
       fieldName: 'projectName',
       label: $t('dows-project.project.projectName'),
     },
     {
-      component: 'Input',
-      componentProps: {
-        readonly: true,
-        placeholder: '', // 添加空字符串作为placeholder，防止显示"请输入"
-      },
+      component: markRaw(ReadOnlyInputAsLabel),
       fieldName: 'projectCode',
       label: $t('dows-project.project.projectCode'),
     },
     {
-      component: 'Input',
-      componentProps: {
-        readonly: true,
-        placeholder: '', // 添加空字符串作为placeholder，防止显示"请输入"
-      },
+      component: markRaw(ReadOnlyInputAsLabel),
       fieldName: 'scope',
       label: $t('dows-project.project.scope'),
     },
@@ -143,7 +135,10 @@ export function useViewFormSchema(): VbenFormSchema[] {
       component: 'Textarea',
       componentProps: {
         readonly: true,
-        rows: 8, // 设置文本域高度为8行
+        rows: 8,
+        placeholder: '',
+        bordered: false,
+        style: { border: 'none', boxShadow: 'none', padding: 0 },
       },
       fieldName: 'description',
       label: $t('dows-project.project.description'),
