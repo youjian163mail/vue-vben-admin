@@ -88,6 +88,7 @@ export function useViewFormSchema(): VbenFormSchema[] {
       component: 'Input',
       componentProps: {
         readonly: true,
+        placeholder: '', // 添加空字符串作为placeholder，防止显示"请输入"
       },
       fieldName: 'projectName',
       label: $t('dows-project.project.projectName'),
@@ -96,6 +97,7 @@ export function useViewFormSchema(): VbenFormSchema[] {
       component: 'Input',
       componentProps: {
         readonly: true,
+        placeholder: '', // 添加空字符串作为placeholder，防止显示"请输入"
       },
       fieldName: 'projectCode',
       label: $t('dows-project.project.projectCode'),
@@ -104,6 +106,7 @@ export function useViewFormSchema(): VbenFormSchema[] {
       component: 'Input',
       componentProps: {
         readonly: true,
+        placeholder: '', // 添加空字符串作为placeholder，防止显示"请输入"
       },
       fieldName: 'scope',
       label: $t('dows-project.project.scope'),
