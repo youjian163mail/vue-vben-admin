@@ -89,8 +89,7 @@ const [Drawer, drawerApi] = useVbenDrawer({
       if (data) {
         // Transform data based on mode
         let transformedData = data;
-        transformedData.scope = data.scope === null ? '' : String(data.scope);
-        if (mode.value === 'view') {
+        if (mode.value === 'view' || mode.value === 'create') {
           // For view mode: transform to display label text
           transformedData = {
             ...data,
@@ -98,11 +97,6 @@ const [Drawer, drawerApi] = useVbenDrawer({
           };
         }
         formApi.setValues(transformedData);
-      } else {
-        // 对于创建模式，设置默认值
-        formApi.setValues({
-          scope: '', // 设置默认的scope为空字符串
-        });
       }
     }
   },
