@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 
 import { $t } from '#/locales';
 
+import ReadOnlyIconAsLabel from './components/ReadOnlyIconAsLabel.vue';
 import ReadOnlyInputAsLabel from './components/ReadOnlyInputAsLabel.vue';
 
 const SCOPE_OPTIONS = [
@@ -104,10 +105,7 @@ export function useViewFormSchema(): VbenFormSchema[] {
       label: $t('dows-project.project.scope'),
     },
     {
-      component: 'IconPicker',
-      componentProps: {
-        disabled: true,
-      },
+      component: markRaw(ReadOnlyIconAsLabel),
       fieldName: 'icon',
       label: '图标',
     },
@@ -128,14 +126,7 @@ export function useViewFormSchema(): VbenFormSchema[] {
       label: $t('dows-project.project.endTime'),
     },
     {
-      component: 'Textarea',
-      componentProps: {
-        readonly: true,
-        rows: 8,
-        placeholder: '',
-        bordered: false,
-        style: { border: 'none', boxShadow: 'none', padding: 0 },
-      },
+      component: markRaw(ReadOnlyInputAsLabel),
       fieldName: 'description',
       label: $t('dows-project.project.description'),
     },
