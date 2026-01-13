@@ -131,8 +131,6 @@ function onCreate() {
     <TagListModal
       v-model:visible="tagManagementModalVisible"
       :project="selectedProject || undefined"
-      @ok="tagManagementModalVisible = false"
-      @cancel="tagManagementModalVisible = false"
     />
     <Grid :table-title="$t('dows-project.project.list')">
       <template #toolbar-tools>

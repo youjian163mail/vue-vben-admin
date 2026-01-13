@@ -3,6 +3,10 @@ import { computed } from 'vue';
 
 import { formatDate } from '@vben/utils';
 
+/**
+ * 只读输入框组件，用于在表单只读模式下显示纯文本内容
+ * 特别处理多行文本，保留换行格式
+ */
 interface Props {
   modelValue?: string;
   formatType?: 'date' | 'datetime' | 'text' | 'time'; // 格式化类型，新增time类型
@@ -61,6 +65,7 @@ const displayValue = computed(() => {
 
 <template>
   <div class="read-only-input-as-label">
+    <!-- 使用 pre 标签保留换行符和空格，配合 CSS 类处理文本换行 -->
     <pre class="whitespace-pre-wrap break-words">{{ displayValue }}</pre>
   </div>
 </template>
