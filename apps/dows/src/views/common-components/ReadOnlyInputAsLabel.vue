@@ -61,7 +61,7 @@ const displayValue = computed(() => {
 
 <template>
   <div class="read-only-input-as-label">
-    {{ displayValue }}
+    <pre class="whitespace-pre-wrap break-words">{{ displayValue }}</pre>
   </div>
 </template>
 
