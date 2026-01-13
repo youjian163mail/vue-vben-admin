@@ -95,8 +95,8 @@ function onDelete(row: ProjectApi.Project) {
     key: 'action_process_msg',
   });
   // Ensure we're passing a valid string ID, using projectInstanceId as fallback if id is undefined
-  const projectId = row.id ?? row.projectInstanceId;
-  deleteProject(projectId)
+  const projectInstanceId = row.id ?? row.projectInstanceId;
+  deleteProject(projectInstanceId)
     .then(() => {
       message.success({
         content: $t('ui.actionMessage.deleteSuccess', [row.projectName]),

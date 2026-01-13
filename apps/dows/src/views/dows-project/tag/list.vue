@@ -34,7 +34,7 @@ const [FormDrawer, formDrawerApi] = useVbenDrawer({
 });
 
 // 获取项目ID
-const projectId = computed(() => props.project?.id);
+const projectInstanceId = computed(() => props.project?.id);
 
 const [Grid, gridApi] = useVbenVxeGrid({
   formOptions: {
@@ -54,11 +54,11 @@ const [Grid, gridApi] = useVbenVxeGrid({
       ajax: {
         query: async ({ page }, formValues) => {
           // 如果有项目ID，则添加到查询参数中
-          return await (projectId.value
+          return await (projectInstanceId.value
             ? getProjectTagList({
                 pageNum: page.currentPage,
                 pageSize: page.pageSize,
-                projectId: projectId.value,
+                projectInstanceId: projectInstanceId.value,
                 ...formValues,
               })
             : getProjectTagList({
