@@ -18,6 +18,7 @@ import { $t } from '#/locales';
 
 import { useColumns, useGridFormSchema } from './data';
 import Form from './modules/form.vue';
+import SettingListModal from './modules/setting-list-modal.vue';
 import TagListModal from './modules/tag-list-modal.vue';
 
 const [FormDrawer, formDrawerApi] = useVbenDrawer({
@@ -65,14 +66,22 @@ function onActionClick(e: OnActionClickParams<ProjectApi.Project>) {
       onDelete(e.row);
       break;
     }
+
     case 'edit': {
       onEdit(e.row);
       break;
     }
+
+    case 'settingManage': {
+      onSettingManagement(e.row);
+      break;
+    }
+
     case 'tagManage': {
       onTagManagement(e.row);
       break;
     }
+
     case 'view': {
       onView(e.row);
       break;
@@ -117,6 +126,13 @@ function onTagManagement(row: ProjectApi.Project) {
   tagManagementModalVisible.value = true;
 }
 
+const settingManagementModalVisible = ref(false);
+
+function onSettingManagement(row: ProjectApi.Project) {
+  selectedProject.value = row;
+  settingManagementModalVisible.value = true;
+}
+
 function onRefresh() {
   gridApi.query();
 }
@@ -130,6 +146,10 @@ function onCreate() {
     <FormDrawer class="w-[600px]" @success="onRefresh" />
     <TagListModal
       v-model:visible="tagManagementModalVisible"
+      :project="selectedProject || undefined"
+    />
+    <SettingListModal
+      v-model:visible="settingManagementModalVisible"
       :project="selectedProject || undefined"
     />
     <Grid :table-title="$t('dows-project.project.list')">

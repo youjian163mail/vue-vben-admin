@@ -35,5 +35,14 @@
     "list": "标签列表",
     "name": "标签",
     "operation": "操作"
+  },
+  "setting": {
+    "management": "设置管理",
+    "name": "设置",
+    "title": "设置管理",
+    "list": "设置列表",
+    "operation": "操作",
+    "settingKey": "设置key",
+    "settingJson": "设置描述"
   }
 }

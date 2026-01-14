@@ -88,5 +88,26 @@ export function useFormSchema(): VbenFormSchema[] {
 
 // 查看模式下的表单配置
 export function useViewFormSchema(): VbenFormSchema[] {
-  return [...useBaseFormSchema()];
+  return [
+    {
+      component: 'Input',
+      fieldName: 'tagName',
+      label: $t('dows-project.tag.tagName'),
+      componentProps: {
+        bordered: false,
+        readonly: true,
+        style: { border: 'none', boxShadow: 'none', padding: 0 },
+      },
+    },
+    {
+      component: 'Input',
+      fieldName: 'tagColor',
+      label: $t('dows-project.tag.tagColor'),
+      componentProps: {
+        bordered: false,
+        readonly: true,
+        style: { border: 'none', boxShadow: 'none', padding: 0 },
+      },
+    },
+  ];
 }

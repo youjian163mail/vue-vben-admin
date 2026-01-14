@@ -7,9 +7,7 @@ export namespace ProjectSettingApi {
   export interface ProjectSetting {
     [key: string]: any;
     projectSettingId: string;
-    /** 设置key */
     settingKey: string;
-    /** 设置详情 */
     settingJson: string;
     projectInstanceId?: string;
     id?: string;
@@ -81,7 +79,9 @@ async function deleteProjectSetting(projectSettingId: string) {
 async function batchDeleteProjectSetting(
   reqData: ProjectSettingApi.DeleteProjectSettingItem[],
 ) {
-  return requestClient.delete('/admin/project/setting/entity', { data: reqData });
+  return requestClient.delete('/admin/project/setting/entity', {
+    data: reqData,
+  });
 }
 
 export {
