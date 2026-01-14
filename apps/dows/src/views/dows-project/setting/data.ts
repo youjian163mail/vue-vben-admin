@@ -66,14 +66,20 @@ export function useColumns<T = ProjectSettingApi.ProjectSetting>(
 ): VxeTableGridOptions['columns'] {
   return [
     {
+      type: 'seq',
+      title: '序号',
+      width: 60,
+      align: 'center',
+    },
+    {
       field: 'settingKey',
       title: $t('dows-project.setting.settingKey'),
-      width: 200,
+      width: 250,
     },
     {
       field: 'settingJson',
       title: $t('dows-project.setting.settingJson'),
-      width: 200,
+      width: 350,
     },
     {
       align: 'center',
