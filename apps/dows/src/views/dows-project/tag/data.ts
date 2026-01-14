@@ -72,6 +72,9 @@ function useBaseFormSchema(): VbenFormSchema[] {
     },
     {
       component: 'Input',
+      componentProps: {
+        type: 'color',
+      },
       fieldName: 'tagColor',
       label: $t('dows-project.tag.tagColor'),
     },
