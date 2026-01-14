@@ -42,7 +42,7 @@ const projectInstanceId = computed(() => props.project?.id);
 const [Grid, gridApi] = useVbenVxeGrid({
   formOptions: {
     schema: useGridFormSchema(),
-    submitOnChange: true,
+    submitOnChange: false,
     wrapperClass: 'lg:grid-cols-2',
   },
   gridOptions: {
