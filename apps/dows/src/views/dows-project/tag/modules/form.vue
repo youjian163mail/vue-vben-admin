@@ -52,7 +52,6 @@ const [Drawer, drawerApi] = useVbenDrawer({
     (id.value
       ? updateProjectTag(id.value, {
           ...values,
-          projectInstanceId: formData.value?.projectInstanceId,
         })
       : createProjectTag({
           ...values,
