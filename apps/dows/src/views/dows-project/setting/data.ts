@@ -86,7 +86,7 @@ export function useColumns<T = ProjectSettingApi.ProjectSetting>(
       cellRender: {
         attrs: {
           nameField: 'settingKey',
-          nameTitle: $t('dows-project.setting.settingKey'),
+          nameTitle: $t('dows-project.setting.name'),
           onClick: onActionClick,
         },
         name: 'CellOperation',
