@@ -109,7 +109,15 @@ function onActionClick(
       onEdit(e.row);
       break;
     }
+    case 'view': {
+      onView(e.row);
+      break;
+    }
   }
+}
+
+function onView(row: ProjectSettingApi.ProjectSetting) {
+  formDrawerApi.setData({ ...row, mode: 'view' }).open();
 }
 
 function onEdit(row: ProjectSettingApi.ProjectSetting) {

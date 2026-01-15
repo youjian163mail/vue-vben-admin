@@ -92,6 +92,14 @@ const [Drawer, drawerApi] = useVbenDrawer({
       await nextTick();
       await nextTick(); // Double nextTick to ensure DOM updates
 
+      // 根据模式设置取消按钮的显示状态 - 提前处理
+      const shouldShowCancel = mode.value !== 'view';
+      drawerApi.setState({
+        showCancelButton: shouldShowCancel,
+        confirmText:
+          mode.value === 'view' ? $t('btn-common.close') : $t('common.confirm'),
+      });
+
       if (data) {
         // Transform data based on mode
         let transformedData = { ...data };

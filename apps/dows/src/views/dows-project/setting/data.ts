@@ -2,7 +2,10 @@ import type { VbenFormSchema } from '#/adapter/form';
 import type { OnActionClickFn, VxeTableGridOptions } from '#/adapter/vxe-table';
 import type { ProjectSettingApi } from '#/api/dows-project/setting';
 
+import { markRaw } from 'vue';
+
 import { $t } from '#/locales';
+import ReadOnlyInputAsLabel from '#/views/common-components/ReadOnlyInputAsLabel.vue';
 
 export function useFormSchema(): VbenFormSchema[] {
   return [
@@ -13,13 +16,13 @@ export function useFormSchema(): VbenFormSchema[] {
       rules: 'required',
     },
     {
-      component: 'Input',
+      component: 'Textarea',
       componentProps: {
-        type: 'textarea',
-        rows: 6,
+        rows: 28,
       },
       fieldName: 'settingJson',
       label: $t('dows-project.setting.settingJson'),
+      wrapperClass: 'flex flex-col items-start',
     },
   ];
 }
@@ -27,26 +30,22 @@ export function useFormSchema(): VbenFormSchema[] {
 export function useViewFormSchema(): VbenFormSchema[] {
   return [
     {
-      component: 'Input',
+      component: markRaw(ReadOnlyInputAsLabel),
       fieldName: 'settingKey',
       label: $t('dows-project.setting.settingKey'),
       componentProps: {
-        bordered: false,
-        readonly: true,
-        style: { border: 'none', boxShadow: 'none', padding: 0 },
+        class: 'read-only-setting-key-input',
       },
     },
     {
-      component: 'Input',
-      componentProps: {
-        bordered: false,
-        readonly: true,
-        style: { border: 'none', boxShadow: 'none', padding: 0 },
-        type: 'textarea',
-        rows: 6,
-      },
+      component: markRaw(ReadOnlyInputAsLabel),
       fieldName: 'settingJson',
       label: $t('dows-project.setting.settingJson'),
+      wrapperClass: 'flex flex-col items-start gap-0',
+      componentProps: {
+        class: 'read-only-setting-json-input',
+        topAligned: true,
+      },
     },
   ];
 }
@@ -74,12 +73,12 @@ export function useColumns<T = ProjectSettingApi.ProjectSetting>(
     {
       field: 'settingKey',
       title: $t('dows-project.setting.settingKey'),
-      width: 250,
+      width: 300,
     },
     {
       field: 'settingJson',
       title: $t('dows-project.setting.settingJson'),
-      width: 350,
+      width: 290,
     },
     {
       align: 'center',
@@ -89,12 +88,21 @@ export function useColumns<T = ProjectSettingApi.ProjectSetting>(
           nameTitle: $t('dows-project.setting.name'),
           onClick: onActionClick,
         },
+        options: [
+          {
+            text: $t('ui.actionTitle.view'),
+            code: 'view',
+            type: 'link',
+          },
+          'edit',
+          'delete',
+        ],
         name: 'CellOperation',
       },
       field: 'operation',
       fixed: 'right',
       title: $t('dows-project.setting.operation'),
-      width: 130,
+      width: 150,
     },
   ];
 }
