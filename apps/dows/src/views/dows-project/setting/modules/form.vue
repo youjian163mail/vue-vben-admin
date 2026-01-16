@@ -24,6 +24,9 @@ const schema = computed(() => {
 });
 
 const [Form, formApi] = useVbenForm({
+  commonConfig: {
+    formItemClass: 'items-start',
+  },
   schema: schema.value,
   showDefaultActions: false,
 });

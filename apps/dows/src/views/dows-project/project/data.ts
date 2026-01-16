@@ -78,11 +78,11 @@ export function useFormSchema(): VbenFormSchema[] {
     },
     {
       component: 'Textarea',
+      componentProps: {
+        rows: 28,
+      },
       fieldName: 'description',
       label: $t('dows-project.project.description'),
-      componentProps: {
-        rows: 8, // 设置文本域高度为8行
-      },
     },
   ];
 }

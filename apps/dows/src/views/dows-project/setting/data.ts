@@ -22,7 +22,6 @@ export function useFormSchema(): VbenFormSchema[] {
       },
       fieldName: 'settingJson',
       label: $t('dows-project.setting.settingJson'),
-      wrapperClass: 'flex flex-col items-start',
     },
   ];
 }
@@ -33,19 +32,11 @@ export function useViewFormSchema(): VbenFormSchema[] {
       component: markRaw(ReadOnlyInputAsLabel),
       fieldName: 'settingKey',
       label: $t('dows-project.setting.settingKey'),
-      componentProps: {
-        class: 'read-only-setting-key-input',
-      },
     },
     {
       component: markRaw(ReadOnlyInputAsLabel),
       fieldName: 'settingJson',
       label: $t('dows-project.setting.settingJson'),
-      wrapperClass: 'flex flex-col items-start gap-0',
-      componentProps: {
-        class: 'read-only-setting-json-input',
-        topAligned: true,
-      },
     },
   ];
 }
